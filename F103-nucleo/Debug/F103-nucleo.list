@@ -869,9 +869,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
  80004fe:	4b10      	ldr	r3, [pc, #64]	; (8000540 <HAL_UART_MspInit+0xe0>)
  8000500:	2200      	movs	r2, #0
  8000502:	615a      	str	r2, [r3, #20]
-    hdma_usart2_tx.Init.Mode = DMA_NORMAL;
+    hdma_usart2_tx.Init.Mode = DMA_CIRCULAR;
  8000504:	4b0e      	ldr	r3, [pc, #56]	; (8000540 <HAL_UART_MspInit+0xe0>)
- 8000506:	2200      	movs	r2, #0
+ 8000506:	2220      	movs	r2, #32
  8000508:	619a      	str	r2, [r3, #24]
     hdma_usart2_tx.Init.Priority = DMA_PRIORITY_LOW;
  800050a:	4b0d      	ldr	r3, [pc, #52]	; (8000540 <HAL_UART_MspInit+0xe0>)
