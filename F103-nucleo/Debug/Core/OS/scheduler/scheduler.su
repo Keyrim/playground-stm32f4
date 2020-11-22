@@ -1,0 +1,12 @@
+scheduler.c:28:6:SCHEDULER_init	16	static
+scheduler.c:39:6:SCHEDULER_run	16	static
+scheduler.c:54:10:SCHEDULER_get_cpu_load	16	static
+scheduler.c:61:17:get_first_task	4	static
+scheduler.c:66:17:get_next_task	4	static
+scheduler.c:70:17:task_process_it	16	static
+scheduler.c:99:17:task_process_main	16	static
+scheduler.c:130:6:SCHEDULER_enable_task	16	static
+scheduler.c:137:6:SCHEDULER_reschedule_task	16	static
+scheduler.c:148:15:queu_contains	24	static
+scheduler.c:155:15:queu_add	24	static
+scheduler.c:175:15:queu_remove	24	static

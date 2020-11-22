@@ -20,12 +20,19 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
+#include "i2c.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
 
+#include "../OS/debug/retarget.h"
+#include "../OS/scheduler/scheduler.h"
+#include "../OS/time.h"
+#include "../OS/system_d.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,14 +52,14 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+system_t sys ;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
-	void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart);
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart);
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -90,17 +97,22 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART2_UART_Init();
+  MX_TIM1_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-  uint8_t data[] = "test vraiment tres long parceque j'ai rien a faire d autre et aussi pour voir si ca marche bien enfaite\n\r";
-  HAL_UART_Transmit_DMA(&huart2, data, 105);
+  //Init des modules : on fait le lien entre les modules et les structures hal
+  LED_SEQUENCE_init(&sys.led, MPU_VCC_GPIO_Port, MPU_VCC_Pin, SEQUENCE_LED_9, 200, 12, FALSE);
+
+
+  SCHEDULER_init(&sys);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  SCHEDULER_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -150,7 +162,13 @@ void SystemClock_Config(void)
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
 	UNUSED(huart);
-	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+
+
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	UNUSED(htim);
 }
 
 /* USER CODE END 4 */

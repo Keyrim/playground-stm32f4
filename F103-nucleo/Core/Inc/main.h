@@ -60,8 +60,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BUTTON_Pin GPIO_PIN_13
 #define BUTTON_GPIO_Port GPIOC
-#define LED_Pin GPIO_PIN_5
-#define LED_GPIO_Port GPIOA
+#define MPU_VCC_Pin GPIO_PIN_5
+#define MPU_VCC_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
