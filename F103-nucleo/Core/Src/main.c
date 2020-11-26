@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "dma.h"
 #include "i2c.h"
 #include "tim.h"
 #include "usart.h"
@@ -95,7 +94,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_USART2_UART_Init();
   MX_TIM1_Init();
   MX_I2C1_Init();
@@ -104,8 +102,15 @@ int main(void)
   //Init des modules : on fait le lien entre les modules et les structures hal
   LED_SEQUENCE_init(&sys.led, MPU_VCC_GPIO_Port, MPU_VCC_Pin, SEQUENCE_LED_9, 200, 12, FALSE);
 
-
+  //Init du task manager
   SCHEDULER_init(&sys);
+
+  //Test présence mpu en i2c
+  HAL_Delay(500);
+  HAL_StatusTypeDef mpu_ok = HAL_I2C_IsDeviceReady(&hi2c1, 0xD0, 2, 5);
+  printf("Mpu\t%d\n", mpu_ok);
+  HAL_Delay(500000);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -181,7 +186,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-
+	printf("error_handler\n");
   /* USER CODE END Error_Handler_Debug */
 }
 

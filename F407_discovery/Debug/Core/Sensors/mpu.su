@@ -1,0 +1,3 @@
+mpu.c:13:16:MPU_init	48	static
+mpu.c:66:16:MPU_init_gyro	16	static
+mpu.c:73:16:MPU_init_acc	16	static

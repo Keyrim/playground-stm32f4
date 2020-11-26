@@ -16,7 +16,7 @@ sensor_init_e GYRO_init(gyro_t * gyro, gyros_e name, I2C_HandleTypeDef * hi2c, s
 	gyro->hi2c = hi2c ;
 	gyro->name = name ;
 
-	switch(name)
+	return to_return ;
 
 }
 

@@ -1,0 +1,4 @@
+events.c:37:6:EVENT_process_events	16	static
+events.c:60:8:EVENT_Set_flag	16	static
+events.c:63:8:EVENT_Clean_flag	16	static
+events.c:67:6:EVENT_init	4	static

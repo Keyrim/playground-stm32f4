@@ -22,13 +22,25 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- ../Core/Inc/gpio.h ../Core/Inc/main.h \
- ../Core/Src/../../Drivers/btm/Sequence_led.h \
- ../Core/Src/../../Drivers/btm/macro_types.h \
- ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h \
- ../Core/Inc/sequences_led.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ ../Core/Inc/i2c.h ../Core/Inc/main.h ../Core/Inc/usart.h \
+ ../Core/Inc/gpio.h ../Core/Src/../../Drivers/Inc/Sequence_led.h \
+ ../Core/Src/../../Drivers/Inc/../../Core/OS/macro_types.h \
+ ../Core/Src/../OS/scheduler/scheduler.h \
+ ../Core/Src/../OS/scheduler/../tasks/task.h \
+ ../Core/Src/../OS/scheduler/../tasks/../system_d.h \
+ ../Core/Src/../OS/scheduler/../tasks/../macro_types.h \
+ ../Core/Src/../OS/scheduler/../tasks/../../Sensors/mpu.h \
+ ../Core/Src/../OS/scheduler/../tasks/../../Sensors/sensors.h \
+ ../Core/Src/../OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h \
+ ../Core/Src/../OS/scheduler/../macro_types.h \
+ ../Core/Src/../OS/scheduler/../debug/debug.h \
+ ../Core/Src/../OS/scheduler/../debug/retarget.h \
+ ../Core/Src/../OS/scheduler/../system_d.h
 
 ../Core/Inc/main.h:
 
@@ -78,18 +90,46 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:
+
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h:
+
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 
-../Core/Inc/gpio.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+
+../Core/Inc/i2c.h:
 
 ../Core/Inc/main.h:
 
-../Core/Src/../../Drivers/btm/Sequence_led.h:
+../Core/Inc/usart.h:
 
-../Core/Src/../../Drivers/btm/macro_types.h:
+../Core/Inc/gpio.h:
 
-../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h:
+../Core/Src/../../Drivers/Inc/Sequence_led.h:
 
-../Core/Inc/sequences_led.h:
+../Core/Src/../../Drivers/Inc/../../Core/OS/macro_types.h:
+
+../Core/Src/../OS/scheduler/scheduler.h:
+
+../Core/Src/../OS/scheduler/../tasks/task.h:
+
+../Core/Src/../OS/scheduler/../tasks/../system_d.h:
+
+../Core/Src/../OS/scheduler/../tasks/../macro_types.h:
+
+../Core/Src/../OS/scheduler/../tasks/../../Sensors/mpu.h:
+
+../Core/Src/../OS/scheduler/../tasks/../../Sensors/sensors.h:
+
+../Core/Src/../OS/scheduler/../tasks/../../../Drivers/Inc/Sequence_led.h:
+
+../Core/Src/../OS/scheduler/../macro_types.h:
+
+../Core/Src/../OS/scheduler/../debug/debug.h:
+
+../Core/Src/../OS/scheduler/../debug/retarget.h:
+
+../Core/Src/../OS/scheduler/../system_d.h:

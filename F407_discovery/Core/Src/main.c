@@ -19,12 +19,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../../Drivers/btm/Sequence_led.h"
-#include "sequences_led.h"
+#include "../../Drivers/Inc/Sequence_led.h"
+#include "../OS/scheduler/scheduler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,18 +67,6 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	sequence_led_t led_etat ;
-	uint8_t state = 0 ;
-	uint8_t current_sequence = 0 ;
-	uint16_t sequences [7] = {
-			SEQUENCE_LED_1,
-			SEQUENCE_LED_2,
-			SEQUENCE_LED_3,
-			SEQUENCE_LED_4,
-			SEQUENCE_LED_5,
-			SEQUENCE_LED_6,
-			SEQUENCE_LED_7
-	};
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -86,9 +76,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
-  //Init sequence led
-  LED_SEQUENCE_init(&led_etat, LED_1_GPIO_Port, LED_1_Pin, sequences[current_sequence], 200, 12, 1);
-
+  system_t sys ;
 
   /* USER CODE END Init */
 
@@ -101,32 +89,23 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
+
+
+  SCHEDULER_init(&sys);
+  LED_SEQUENCE_init(&sys.led, LED_1_GPIO_Port, LED_1_Pin, SEQUENCE_LED_1, 200, 12, 1);
+  MPU_init(&sys.sensors.mpu, USE_I2C, &hi2c1, NULL);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  LED_SEQUENCE_play(&led_etat, HAL_GetTick());
 
-	  switch(state){
-		  case 0:
-			  if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)){
-				  current_sequence = (current_sequence + 1)%7 ;
-				  LED_SEQUENCE_set_sequence(&led_etat, sequences[current_sequence]);
-				  state = 1 ;
-			  }
-			  break;
-		  case 1:
-			  if(!HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)){
-				  state = 0 ;
-			  }
-			  break;
-
-	  }
-	  HAL_Delay(1);
+	  SCHEDULER_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

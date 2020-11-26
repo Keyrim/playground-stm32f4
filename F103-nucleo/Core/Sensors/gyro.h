@@ -10,6 +10,10 @@
 
 
 #include "stm32f1xx_hal.h"
+#include "sensors.h"
+
+/* Default I2C address */
+#define MPU6050_I2C_ADDR			0xD0
 
 typedef enum gyros_e{
 	GYRO_MPU6050,
