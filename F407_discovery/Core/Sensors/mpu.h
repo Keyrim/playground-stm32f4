@@ -10,25 +10,10 @@
 
 #include "stm32f4xx_hal.h"
 #include "sensors.h"
-
-/* Default I2C used */
-#ifndef MPU6050_I2C
-	#define	MPU6050_I2C					I2C1
-	#define MPU6050_I2C_PINSPACK		I2C_PinsPack_1
-#endif
-
-/* Default I2C clock */
-#ifndef MPU6050_I2C_CLOCK
-#define MPU6050_I2C_CLOCK			400000
-#endif
+#include "../OS/macro_types.h"
 
 /* Default I2C address */
 #define MPU6050_I2C_ADDR			0xD0
-
-/* Who I am register value */
-#define MPU6050_I_AM				0x68
-#define MPU9250_I_AM				0x71
-#define MPU9255_I_AM				0x73
 
 /* MPU6050 registers */
 #define MPU6050_AUX_VDDIO			0x01
@@ -93,36 +78,57 @@ typedef enum MPU_gyro_range_e{
 	MPU_GYRO_2000s = 0x03
 } MPU_gyro_range_e;
 
+typedef enum MPU_dma_state_e{
+	MPU_DMA_IDDLE,
+	MPU_DMA_GYRO_IN_PROGRESS,
+	MPU_DMA_ACC_IN_PROGREE
+}MPU_dma_state_e;
+
+
 typedef struct{
 	//Hal periph
-	I2C_HandleTypeDef * hi2c ;
-	DMA_HandleTypeDef * hdma ;
+	I2C_HandleTypeDef * hi2c ;	//Can use I2C
+								//Or spi
+	HAL_StatusTypeDef hal_state ;
 
 	//Mpu global state
 	sensor_state_e state ;
+	MPU_dma_state_e dma_state;
 
 	//Mpu settings
 	uint8_t adresse ;
-	sensor_connectivity_e connectivity ;
 
 	//Gyroscope stuff
+	uint8_t gyro_data[6];
 	int16_t gyro_raw[3];
 	float gyro[3];
 	MPU_gyro_range_e gyro_range ;
 	float gyro_sensi ;
 
 	//Accelerometer stuff
+	uint8_t acc_data[6];
 	int16_t acc_raw[3];
 	float acc[3];
 	MPU_acc_range_e acc_range ;
 	float acc_sensi ;
+
+	uint32_t start_time_dma ;
+	uint32_t end_time_dma ;
+	uint32_t delta_time_dma ;
 }mpu_t;
 
 
 //Init functions for the mpu
-sensor_state_e MPU_init(mpu_t * mpu, sensor_connectivity_e connectivity, I2C_HandleTypeDef * hi2c, DMA_HandleTypeDef * hdma);
+sensor_state_e MPU_init(mpu_t * mpu, I2C_HandleTypeDef * hi2c);
 sensor_state_e MPU_init_gyro(mpu_t * mpu, MPU_gyro_range_e gyro_range);
 sensor_state_e MPU_init_acc(mpu_t * mpu, MPU_acc_range_e acc_range);
+
+//Update functions for the mpu
+sensor_state_e MPU_update_gyro(mpu_t * mpu);
+sensor_state_e MPU_update_gyro_dma(mpu_t * mpu);
+
+//Appelé par le gestionnaire d'event quand le dma à finis son taff
+void MPU_dma_transmit_done(mpu_t * mpu);
 
 
 

@@ -31,6 +31,7 @@ typedef enum task_states{
 typedef enum task_ids {
 	TASK_PRINTF,
 	TASK_LED,
+	TASK_GYRO,
 	TASK_COUNT
 }task_ids_t;
 

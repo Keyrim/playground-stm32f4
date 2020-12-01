@@ -19,14 +19,15 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "i2c.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../../Drivers/Inc/Sequence_led.h"
-#include "../OS/scheduler/scheduler.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,15 +90,23 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_USART1_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
 
 
   SCHEDULER_init(&sys);
+  EVENT_init(&sys, &htim2);
+
   LED_SEQUENCE_init(&sys.led, LED_1_GPIO_Port, LED_1_Pin, SEQUENCE_LED_1, 200, 12, 1);
-  MPU_init(&sys.sensors.mpu, USE_I2C, &hi2c1, NULL);
+
+  MPU_init(&sys.sensors.mpu, &hi2c1);
+  GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
+  if(sys.sensors.gyro.state != SENSOR_IDDLE)
+	  LED_SEQUENCE_set_sequence(&sys.led, SEQUENCE_LED_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */

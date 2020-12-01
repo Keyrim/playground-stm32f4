@@ -1,3 +1,8 @@
-mpu.c:13:16:MPU_init	48	static
-mpu.c:66:16:MPU_init_gyro	16	static
-mpu.c:73:16:MPU_init_acc	16	static
+mpu.c:12:6:convert_gyro	16	static
+mpu.c:23:6:convert_acc	16	static
+mpu.c:30:16:MPU_init	40	static
+mpu.c:69:16:MPU_init_gyro	40	static
+mpu.c:109:16:MPU_init_acc	40	static
+mpu.c:140:16:MPU_update_gyro	32	static
+mpu.c:158:16:MPU_update_gyro_dma	24	static
+mpu.c:174:6:MPU_dma_transmit_done	16	static

@@ -10,7 +10,7 @@
 
 typedef enum{
 	//Flags
-
+	FLAG_DMA_GYRO_DONE,
 	FLAG_COUNT
 }Flags_t;
 

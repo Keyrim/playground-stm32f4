@@ -17,20 +17,21 @@ typedef enum sensor_connectivity_e{
 }sensor_connectivity_e;
 
 
-typedef enum sensor_end_e{
-	SENSOR_END_OK,
-	SENSOR_END_TIME_OUT,
-	SENSOR_END_CONNECTIVITY_BUSY,
-	SENSOR_END_FAIL
-}sensor_end_e;
-
 typedef enum sensor_state_e{
+	SENSOR_IDDLE,
 	SENSOR_NOT_INIT,
-	SENSOR_INIT_OK,
-	SENSOR_INIT_FAILED,
-	SENSOR_REQUEST_FAILED
+	SENSOR_NOT_DETECTED,
+	SENSOR_IN_PROGRESS,
+	SENSOR_HAL_BUSY,
+	SENSOR_ERROR
 }sensor_state_e;
 
+
+typedef enum gyro_axe_e{
+	GYRO_AXE_X,
+	GYRO_AXE_Y,
+	GYRO_AXE_Z
+}gyro_axe_e;
 
 
 #endif /* SENSORS_SENSORS_H_ */

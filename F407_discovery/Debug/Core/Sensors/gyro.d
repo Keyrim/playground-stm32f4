@@ -26,8 +26,11 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Sensors/sensors.h
+ ../Core/Sensors/sensors.h ../Core/Sensors/mpu.h \
+ ../Core/Sensors/../OS/macro_types.h
 
 ../Core/Sensors/gyro.h:
 
@@ -85,6 +88,14 @@ Core/Sensors/gyro.o: ../Core/Sensors/gyro.c ../Core/Sensors/gyro.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
+
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
 ../Core/Sensors/sensors.h:
+
+../Core/Sensors/mpu.h:
+
+../Core/Sensors/../OS/macro_types.h:

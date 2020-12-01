@@ -10,6 +10,9 @@
 
 typedef enum{
 	//MASK_DEF
+	MASK_GYRO_DMA_DONE_DMA_IT = 0,
+	MASK_GYRO_DMA_DONE_COUNT,
+
 	MASK_DEF_LAST
 }mask_def_ids_t;
 

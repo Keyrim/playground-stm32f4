@@ -33,7 +33,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "../../Drivers/Inc/Sequence_led.h"
+#include "../OS/scheduler/scheduler.h"
+#include "../OS/events/events.h"
+#include "../Sensors/gyro.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

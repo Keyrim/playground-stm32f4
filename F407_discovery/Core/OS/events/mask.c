@@ -20,9 +20,9 @@ void MASK_clean_every_flags(Mask_t * mask){
 		mask->array[m] = 0 ;
 }
 
-//Fonction qui compare si tous les bits du mask de test sont présent dans le mask de ref
+//Fonction qui compare si tous les bits du mask de test sont prï¿½sent dans le mask de ref
 bool_e Mask_test_and(Mask_t mask_test, Mask_t mask_ref){
-	//On cherche à savoir si les bits du mask sont présent dans le mask de ref
+	//On cherche ï¿½ savoir si les bits du mask sont prï¿½sent dans le mask de ref
 	for(int32_t m = 0; m < NB_ARRAY_MASK; m++)
 		if((mask_test.array[m] & mask_ref.array[m]) != mask_test.array[m]){
 			//Si il ne y a pas correspondance sur une des entiers on renvoit faux
@@ -31,35 +31,35 @@ bool_e Mask_test_and(Mask_t mask_test, Mask_t mask_ref){
 	return TRUE ;
 }
 
-//Fonction qui compare si au moins des bits du mask de test est présent dans le mask de ref
+//Fonction qui compare si au moins des bits du mask de test est prï¿½sent dans le mask de ref
 bool_e Mask_test_or(Mask_t mask_test, Mask_t mask_ref){
-	//On cherche à savoir si au moins des bits du mask ref est présent dans le mask de ref
+	//On cherche ï¿½ savoir si au moins des bits du mask ref est prï¿½sent dans le mask de ref
 	for(int32_t m = 0; m < NB_ARRAY_MASK; m++)
 		if(mask_test.array[m] & mask_ref.array[m])
-			//Si un des bits est présent on renvoit vrai
+			//Si un des bits est prï¿½sent on renvoit vrai
 			return TRUE ;
 	return FALSE ;
 }
 
-//Passe le flag séléctionner à l'état haut, renvoit faux si il l'était déjà, vrai sinon
-bool_e MASK_set_flag(Mask_t * mask, Flags_t flag){
+//Passe le flag sï¿½lï¿½ctionner ï¿½ l'ï¿½tat haut, renvoit faux si il l'ï¿½tait dï¿½jï¿½, vrai sinon
+bool_e MASK_set_flag(volatile Mask_t * mask, Flags_t flag){
 	uint32_t array_nb = flag / 32 ;
 	uint32_t flag_pos = flag % 32 ;
 	uint32_t flag_mask = (uint32_t)(1 << flag_pos) ;
-	//On vérifi si le flag est pas déjà haut
+	//On vï¿½rifi si le flag est pas dï¿½jï¿½ haut
 	if((mask->array[array_nb] & flag_mask) == flag_mask)
 		return FALSE ;
-	//Et on passe à létat haut sinon
+	//Et on passe ï¿½ lï¿½tat haut sinon
 	mask->array[array_nb] |= flag_mask ;
 	return TRUE ;
 }
 
-//Clean un flag, renvoit si il état déjà clean, vrai sinon
-bool_e MASK_clean_flag(Mask_t * mask, Flags_t flag){
+//Clean un flag, renvoit si il ï¿½tat dï¿½jï¿½ clean, vrai sinon
+bool_e MASK_clean_flag(volatile Mask_t * mask, Flags_t flag){
 	uint32_t array_nb = flag / 32 ;
 	uint32_t flag_pos = flag % 32 ;
 	uint32_t flag_mask = (uint32_t)(1 << flag_pos) ;
-	//On  vérifi si le flag est bien levé
+	//On  vï¿½rifi si le flag est bien levï¿½
 	if((mask->array[array_nb] & flag_mask ) == flag_mask){
 		mask->array[array_nb] -= flag_mask ;
 		return TRUE ;
@@ -68,7 +68,7 @@ bool_e MASK_clean_flag(Mask_t * mask, Flags_t flag){
 }
 
 
-//Opérations sur les mask
+//Opï¿½rations sur les mask
 Mask_t MASK_and(Mask_t mask1, Mask_t mask2){
 	Mask_t mask_return = MASK_get_empty_mask() ;
 	for(int32_t m = 0; m < NB_ARRAY_MASK; m++)
@@ -94,7 +94,7 @@ Mask_t MASK_not(Mask_t mask){
 
 
 
-//Créer un mask à partir d'un tableau de flag
+//Crï¿½er un mask ï¿½ partir d'un tableau de flag
 Mask_t MASK_create(Flags_t * flag_array, int32_t len){
 	Mask_t mask_return = MASK_get_empty_mask() ;
 	for(int32_t f = 0; f < len; f++)

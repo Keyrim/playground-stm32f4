@@ -11,39 +11,32 @@
 
 #include "stm32f4xx_hal.h"
 #include "sensors.h"
+#include "mpu.h"
 
-/* Default I2C address */
-#define MPU6050_I2C_ADDR			0xD0
-
-typedef enum gyros_e{
-	GYRO_MPU6050,
-	GYRO_COUNT
-}gyros_e;
+#define USE_GYRO_MPU	//Gyro currently used
 
 
 typedef struct gyro_t{
-	//Properties related to the hardware configuration
-	I2C_HandleTypeDef * hi2c ;
-	gyros_e name ;
+	//
 	sensor_connectivity_e connectivity ;
-	HAL_StatusTypeDef hal_test ;
+	sensor_state_e state ;
 
+	//Available gyro list
+	mpu_t * mpu ;
 
-	//Angle x
-	float x ;
-	float x_raw ;
+	//Raw angles
+	float * raw ;
+	//Filtered angles
+	float filtered[3];
+	//Filters
+	//Todo : filters
 
-	//Angle y
-	float y ;
-	float y_raw ;
-
-	//Angle z
-	float z ;
-	float z_raw ;
-
-	//Rapport (degrees/s / bit)
-	float sensi ;
 }gyro_t;
+
+sensor_state_e GYRO_init(gyro_t * gyro, mpu_t *mpu);
+sensor_state_e GYRO_update(gyro_t * gyro);
+sensor_state_e GYRO_update_dma(gyro_t * gyro);
+void GYRO_dma_done(gyro_t * gyro);
 
 
 #endif /* SENSORS_GYRO_H_ */

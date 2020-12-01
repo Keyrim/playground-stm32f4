@@ -11,5 +11,6 @@
 #include "events.h"
 #include "mask_def_enum.h"
 
+void mask_def_gyro_dma_done(Event_t * event);
 
 #endif /* EVENTS_MASK_DEF_H_ */
