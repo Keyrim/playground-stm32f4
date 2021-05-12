@@ -1,0 +1,7 @@
+-IC:\WorkSpace\GitHub\STM32_Test_Area\F407_Kalman\MatLab
+-IC:\WorkSpace\GitHub\STM32_Test_Area\F407_Kalman\MatLab\pendulum_simulink_open_loop_ert_rtw
+-I"C:\Program Files\MATLAB\R2020b\extern\include"
+-I"C:\Program Files\MATLAB\R2020b\simulink\include"
+-I"C:\Program Files\MATLAB\R2020b\rtw\c\src"
+-I"C:\Program Files\MATLAB\R2020b\rtw\c\src\ext_mode\common"
+-I"C:\Program Files\MATLAB\R2020b\rtw\c\ert"

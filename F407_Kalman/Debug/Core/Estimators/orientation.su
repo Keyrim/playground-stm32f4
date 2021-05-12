@@ -1,0 +1,2 @@
+orientation.c:65:6:ORIENTATION_Init	24	static
+orientation.c:100:6:ORIENTATION_Update	32	static

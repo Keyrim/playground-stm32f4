@@ -1,0 +1,5 @@
+mpu.c:52:18:MPU_init	48	static
+mpu.c:107:18:MPU_init_gyro	48	static
+mpu.c:153:18:MPU_init_acc	56	static
+mpu.c:193:18:MPU_update_all_dma	16	static
+mpu.c:255:6:HAL_I2C_MemRxCpltCallback	16	static

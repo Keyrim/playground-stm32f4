@@ -1,0 +1,4 @@
+gyro.c:135:13:gyro_data_callback	0	static
+gyro.c:16:6:GYRO_init	16	static
+gyro.c:109:6:GYRO_ACC_update_dma	8	static
+gyro.c:122:6:GYRO_process_lpf	8	static

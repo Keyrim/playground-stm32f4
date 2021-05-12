@@ -1,0 +1,7 @@
+scheduler.c:31:6:SCHEDULER_init	8	static
+scheduler.c:42:6:SCHEDULER_run	40	static
+scheduler.c:78:6:SCHEDULER_task	8	static
+scheduler.c:87:7:SCHEDULER_get_cpu_load	4	static
+scheduler.c:150:6:SCHEDULER_enable_task	24	static
+scheduler.c:157:6:SCHEDULER_task_set_mode	24	static,ignoring_inline_asm
+scheduler.c:164:6:SCHEDULER_reschedule_task	8	static

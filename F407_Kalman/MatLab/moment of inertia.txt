@@ -1,0 +1,39 @@
+MoovingParts
+
+Component Instances (1)
+Area	7.016E+04 mm^2
+Density	0.002 g / mm^3
+Mass	130.595 g
+Volume	6.096E+04 mm^3
+Physical Material	(Various)
+
+Bounding Box
+	Length 	 46.00 mm
+	Width 	 55.50 mm
+	Height 	 258.50 mm
+World X,Y,Z	0.00 mm, 0.00 mm, 0.00 mm
+Center of Mass	0.008 mm, -6.947 mm, -167.066 mm
+
+Moment of Inertia at Center of Mass   (g mm^2)
+	Ixx = 1.002E+06
+	Ixy = 10.382
+	Ixz = 109.805
+	Iyx = 10.382
+	Iyy = 9.924E+05
+	Iyz = -7.407E+04
+	Izx = 109.805
+	Izy = -7.407E+04
+	Izz = 2.630E+04
+
+Moment of Inertia at Origin   (g mm^2)
+	Ixx = 4.653E+06		Ixy = 17.75		Ixz = 287.003
+	Iyx = 17.75		Iyy = 4.637E+06		Iyz = -2.256E+05
+	Izx = 287.003		Izy = -2.256E+05	Izz = 3.261E+04
+
+(Unsaved)
+
+
+Moment of Inertia at Origin   (g mm^2)
+	Ixx = 9.720E+05		Ixy = 0.00		Ixz = -5.570E-05
+	Iyx = 0.00		Iyy = 9.720E+05		Iyz = 0.00
+	Izx = -5.570E-05 	Izy = 0.00		Izz = 4.994E+04

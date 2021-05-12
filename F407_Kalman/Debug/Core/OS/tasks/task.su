@@ -1,0 +1,15 @@
+task.c:45:6:process_printf	0	static
+task.c:55:6:process_gyro_update	0	static
+task.c:60:6:process_gyro_filter	0	static
+task.c:71:6:process_acc_filter	0	static
+task.c:75:6:process_event_main	0	static
+task.c:80:6:process_orientation_update	8	static
+task.c:86:6:process_task_scheduler	0	static
+task.c:90:6:process_telemetry	0	static
+task.c:93:6:process_logger	0	static
+task.c:97:6:process_high_lvl	0	static
+task.c:103:6:process_stuff_made_here	0	static
+task.c:108:6:process_self_test	8	static
+task.c:67:6:process_acc_update	0	static
+task.c:23:6:tasks_init	8	static
+task.c:149:10:TASK_get_task	0	static

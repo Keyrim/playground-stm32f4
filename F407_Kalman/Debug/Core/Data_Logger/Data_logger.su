@@ -1,0 +1,8 @@
+Data_logger.c:85:6:DATA_LOGGER_Init	36	static
+Data_logger.c:137:6:DATA_LOGGER_Start	0	static
+Data_logger.c:141:6:DATA_LOGGER_Stop	0	static
+Data_logger.c:145:6:DATA_LOGGER_Main	32	static
+Data_logger.c:235:6:DATA_LOGGER_Reception	0	static
+Data_logger.c:295:9:DATA_LOGGER_Get_Data_Value	8	static
+Data_logger.c:356:9:DATA_LOGGER_Get_Data_Config	16	static
+Data_logger.c:374:10:DATA_LOGGER_Get_Data	0	static
