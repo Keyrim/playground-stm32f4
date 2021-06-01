@@ -25,7 +25,7 @@ static high_level_state_names_e next_state = HIGH_LVL_STATE_IDLE;
 static high_lvl_state_t high_lvl_states[HIGH_LVL_STATE_COUNT] = {
 		[HIGH_LVL_STATE_IDLE] = 			DEF_HIGH_LVL_STATE(HIGH_LVL_STATE_IDLE, 				idle_entrance, 				idle_main),
 		[HIGH_LVL_STATE_FULL_MANUAL] = 		DEF_HIGH_LVL_STATE(HIGH_LVL_STATE_FULL_MANUAL, 			full_manual_entrance, 		full_manual_main),
-
+		[HIGL_LVL_STATE_ANGLE] = 			DEF_HIGH_LVL_STATE(HIGL_LVL_STATE_ANGLE, 				angle_entrance, 			angle_main),
 };
 
 //	-------------------------	Public functions	-------------------------

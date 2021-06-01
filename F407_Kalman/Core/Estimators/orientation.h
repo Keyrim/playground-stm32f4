@@ -27,7 +27,6 @@ typedef struct orientation_t{
 	float * angular_velocity;
 	float acc_angles[ORIENTATION_AXES_COUNT];
 
-	kalman_t kalman;
 
 	bool_e is_ok ;
 

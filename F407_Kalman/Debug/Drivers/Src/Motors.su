@@ -1,4 +1,4 @@
 Motors.c:11:6:MOTORS_Init	16	static
 Motors.c:26:6:MOTORS_Start	8	static
 Motors.c:34:6:MOTORS_Stop	8	static
-Motors.c:42:6:MOTORS_Change_output	12	static
+Motors.c:42:6:MOTORS_Change_output	32	static

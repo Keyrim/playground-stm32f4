@@ -24,7 +24,7 @@ void GYRO_init(gyro_t * gyro, mpu_t * mpu){
 	gyro->raw = gyro->mpu->gyro ;
 
 	gyro->offsets[ORIENTATION_ROLL] = 0.0f;
-	gyro->offsets[ORIENTATION_PITCH] = 0.0f ;
+	gyro->offsets[ORIENTATION_PITCH] = -0.8f ;
 	gyro->offsets[ORIENTATION_YAW] = 0.0f ;
 
 	//Raise the flag "ok" if the gyro get succesfully initiated

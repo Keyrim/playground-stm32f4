@@ -12,31 +12,6 @@
 
 static bool_e first_use = TRUE ;
 
-//Kalman settings
-static arm_matrix_instance_f32 A ;
-static arm_matrix_instance_f32 B ;
-static arm_matrix_instance_f32 C ;
-static arm_matrix_instance_f32 R ;
-static arm_matrix_instance_f32 Q ;
-static arm_matrix_instance_f32 P ;
-
-#define X_SIZE 2
-#define U_SIZE 1
-#define Z_SIZE 2
-
-static float A_array[] = {0.9973, 0.009991, -0.5445, 0.9973};
-static float B_array[] = {0, 0};
-static float C_array[] = {1, 0, 0 ,1};
-static float R_array[] = {0.1, 0, 0, 0.1};
-static float Q_array[] = {0.2, 0, 0, 0.2};
-static float P_array[] = {20, 0, 0, 20};
-static float * u_ptr[U_SIZE];
-static float * z_ptr[Z_SIZE];
-
-static float x[] = {50, 0};
-
-
-
 
 static float absolu(float x);
 static float acc_correction(float x);
@@ -64,15 +39,6 @@ static float acc_correction(float x){
 
 void ORIENTATION_Init(orientation_t * orientation, gyro_t * gyro, acc_t * acc, int32_t frequency){
 	//Kalman's matricies init
-	arm_mat_init_f32(&A, X_SIZE, X_SIZE, A_array);
-	arm_mat_init_f32(&B, X_SIZE, U_SIZE, B_array);
-	arm_mat_init_f32(&C, Z_SIZE, X_SIZE, C_array);
-	arm_mat_init_f32(&R, Z_SIZE, Z_SIZE, R_array);
-	arm_mat_init_f32(&Q, X_SIZE, X_SIZE, Q_array);
-	arm_mat_init_f32(&P, X_SIZE, X_SIZE, P_array);
-
-	z_ptr[0] = &orientation->acc_angles[ORIENTATION_PITCH] ;
-	z_ptr[1] = &gyro->filtered[ORIENTATION_PITCH];
 
 
 

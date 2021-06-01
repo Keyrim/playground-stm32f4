@@ -16,7 +16,9 @@
 
 typedef enum regulation_mode_e{
 	REGULATION_MODE_OFF,
-	REGULATION_MODE_MANUAL
+	REGULATION_MODE_MANUAL,
+	REGULATION_MODE_ANGLE,
+	REGULATION_MODE_VELOCITY
 }regulation_mode_e;
 
 typedef struct regu_orientation_t{

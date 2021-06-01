@@ -112,12 +112,13 @@ int main(void)
 
 	ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_FREQUENCY);
 
-	TELEMETRY_Init(&sys.telemetry, &huart1);
-	DATA_LOGGER_Init(&sys);
 
 	REGULATION_ORIENTATION_Init(&sys.regulation, &sys.orientation, &sys.prop.thrust_consigne[0]);
 	HIGH_LVL_Init(&sys);
 	MOTORS_Init(&sys.prop.motors, &htim1, sys.prop.thrust_consigne, TRUE);
+
+	TELEMETRY_Init(&sys.telemetry, &huart1);
+	DATA_LOGGER_Init(&sys);
 
 	//-----------------------------------------------state space bricolage here
 	static arm_matrix_instance_f32 A ;

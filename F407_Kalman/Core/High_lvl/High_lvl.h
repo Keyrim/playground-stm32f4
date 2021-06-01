@@ -14,6 +14,7 @@
 typedef enum high_level_state_names_e{
 	HIGH_LVL_STATE_IDLE = 0x00,
 	HIGH_LVL_STATE_FULL_MANUAL,
+	HIGL_LVL_STATE_ANGLE,
 	HIGH_LVL_STATE_COUNT
 }high_level_state_names_e;
 
@@ -37,5 +38,9 @@ void idle_main(system_t * sys, uint32_t time_us);
 
 void full_manual_entrance(system_t * sys);
 void full_manual_main(system_t * sys, uint32_t time_us);
+
+void angle_entrance(system_t * sys);
+void angle_main(system_t * sys, uint32_t time_us);
+
 
 #endif /* HIGH_LVL_HIGH_LVL_H_ */

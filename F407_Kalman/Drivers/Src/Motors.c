@@ -6,7 +6,7 @@
  */
 
 #include "../Inc/Motors.h"
-
+#include "math.h"
 
 void MOTORS_Init(motors_t * motors, TIM_HandleTypeDef * htim, int16_t * duty, bool_e start){
 	motors->htim = htim ;
@@ -46,6 +46,10 @@ void MOTORS_Change_output(motors_t * motors){
 	motors->duty[2] = MIN(1000, motors->duty[2]);
 	motors->duty[3] = MIN(1000, motors->duty[3]);
 
+	motors->duty[0] = sqrtf(1000*motors->duty[0]);
+	motors->duty[1] = sqrtf(1000*motors->duty[1]);
+	motors->duty[2] = sqrtf(1000*motors->duty[2]);
+	motors->duty[3] = sqrtf(1000*motors->duty[3]);
 
 	motors->htim->Instance->CCR1 = motors->duty[0]+999;
 	motors->htim->Instance->CCR2 = motors->duty[1]+999;

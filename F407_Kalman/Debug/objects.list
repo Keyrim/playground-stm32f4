@@ -1,6 +1,7 @@
 "Core/Data_Logger/Data_logger.o"
 "Core/Estimators/orientation.o"
 "Core/High_lvl/High_lvl.o"
+"Core/High_lvl/angle.o"
 "Core/High_lvl/full_manual.o"
 "Core/High_lvl/iddle.o"
 "Core/Kalman/Kalman.o"

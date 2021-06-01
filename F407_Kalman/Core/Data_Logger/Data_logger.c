@@ -74,8 +74,11 @@ static uint8_t name_config_request[] = "Send Config";
 static uint8_t name_start_transfer[] = "Start Transfer";
 static uint8_t name_stop_transfer[] = "Stop Transfer";
 static uint8_t name_idle_mode[] = "Idle Mode";
+static uint8_t name_mode_angle[] = "Angle Mode";
 static uint8_t name_full_manual_mode[] = "Full Manual";
 static uint8_t name_start_simulation[] = "Start Simulation";
+
+static uint8_t name_motor_output[] = "Motor Output";
 
 static uint8_t name_mcu_load[] = "CPU Load";
 
@@ -116,17 +119,20 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 							NOT_USED);
 
 
-	DEFINE_DATA(DATA_ID_SIMULATION_OUTPUT1,	 (uint8_t*)sys->state_space.X_array, 											DATA_FORMAT_16B_FLOAT_2D, 	name_simulation_output1, 					USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_SIMULATION_OUTPUT1,	 (uint8_t*)sys->state_space.X_array, 												DATA_FORMAT_16B_FLOAT_2D, 	name_simulation_output1, 					USED_AS_OUTPUT);
 
 	DEFINE_DATA(DATA_ID_MCU_LOAD,	 (uint8_t*)&sys->soft.cpu_load, 															DATA_FORMAT_16B_FLOAT_2D, 	name_mcu_load, 								USED_AS_OUTPUT);
+
+	DEFINE_DATA(DATA_ID_MOTOR_OUTPUT,	 (uint8_t*)&sys->prop.thrust_consigne, 													DATA_FORMAT_16B_INT16, 	name_motor_output, 							USED_AS_OUTPUT);
 
 	//Buttons
 	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_config_request, 						USED_AS_INPUT );
 	DEFINE_DATA(DATA_ID_START_TRANSFER, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_start_transfer, 		 				USED_AS_INPUT);
 	DEFINE_DATA(DATA_ID_STOP_TRANSFER, 		NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_stop_transfer, 						USED_AS_INPUT);
 	DEFINE_DATA(DATA_ID_IDLE_MODE, 			NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_idle_mode, 							USED_AS_INPUT);
+	DEFINE_DATA(DATA_ID_ANGLE_MODE, 		NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_mode_angle, 							USED_AS_INPUT);
 	DEFINE_DATA(DATA_ID_FULL_MANUAL_MODE, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_full_manual_mode, 						USED_AS_INPUT);
-	DEFINE_DATA(DATA_ID_START_SIMULATION, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_start_simulation, 						USED_AS_INPUT);
+	DEFINE_DATA(DATA_ID_START_SIMULATION, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_start_simulation, 						NOT_USED);
 
 
 	DEFINE_DATA(DATA_ID_INPUT_PWM_1, 		NULL, 																				DATA_FORMAT_16B_UINT16, 	name_input_pwm1, 							USED_AS_INPUT);
@@ -257,6 +263,9 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 				case DATA_ID_FULL_MANUAL_MODE:
 					HIGH_LVL_Set_Mode(HIGH_LVL_STATE_FULL_MANUAL);
 					break;
+				case DATA_ID_ANGLE_MODE:
+					HIGH_LVL_Set_Mode(HIGL_LVL_STATE_ANGLE);
+					break;
 				case DATA_ID_START_SIMULATION:
 					sys->simulate = TRUE;
 					break;
@@ -278,12 +287,13 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 			tmp_uint_16 += (uint16_t)input_buffer[2];
 			switch(id){
 				case DATA_ID_INPUT_PWM_1:
-					sys->regulation.motor_consigne = MIN(1000, tmp_uint_16);
+					sys->regulation.consigne_angular_pos = MIN(160, tmp_uint_16);
+					sys->regulation.motor_consigne = MIN(500, tmp_uint_16);
 					break;
 				default:
 					break;
 			}
-
+			break;
 		case DATA_FORMAT_16B_FLOAT_1D:
 			break;
 		default:
