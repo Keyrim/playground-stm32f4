@@ -44,8 +44,9 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Estimators/orientation.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h \
- ../Core/OS/scheduler/../tasks/../../Estimators/../Kalman/Kalman.h \
+ ../Core/OS/scheduler/../tasks/../../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/scheduler/../tasks/../../Regulation/../Estimators/orientation.h \
  c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\pid.h \
@@ -53,7 +54,8 @@ Core/OS/scheduler/scheduler.o: ../Core/OS/scheduler/scheduler.c \
  ../Core/OS/scheduler/../tasks/../../Regulation/../config.h \
  ../Core/OS/scheduler/../tasks/../../config.h \
  ../Core/OS/scheduler/../tasks/../../Telemetry/Telemetry.h \
- ../Core/OS/scheduler/../tasks/../../Simulation/simulation.h \
+ ../Core/OS/scheduler/../tasks/../../State_Space_Model/State_Space_Model.h \
+ ../Core/OS/scheduler/../tasks/../../State_Space_Model/Kalman.h \
  ../Core/OS/scheduler/../macro_types.h \
  ../Core/OS/scheduler/../debug/debug.h \
  ../Core/OS/scheduler/../debug/retarget.h \
@@ -151,9 +153,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/OS/scheduler/../tasks/../../Estimators/../Sensors/acc.h:
 
-../Core/OS/scheduler/../tasks/../../Estimators/../Kalman/Kalman.h:
+../Core/OS/scheduler/../tasks/../../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/OS/scheduler/../tasks/../../Regulation/Regu_orientation.h:
 
@@ -169,7 +173,9 @@ c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\Filters.h:
 
 ../Core/OS/scheduler/../tasks/../../Telemetry/Telemetry.h:
 
-../Core/OS/scheduler/../tasks/../../Simulation/simulation.h:
+../Core/OS/scheduler/../tasks/../../State_Space_Model/State_Space_Model.h:
+
+../Core/OS/scheduler/../tasks/../../State_Space_Model/Kalman.h:
 
 ../Core/OS/scheduler/../macro_types.h:
 

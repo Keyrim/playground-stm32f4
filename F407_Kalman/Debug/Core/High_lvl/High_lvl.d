@@ -44,8 +44,9 @@ Core/High_lvl/High_lvl.o: ../Core/High_lvl/High_lvl.c \
  ../Core/High_lvl/../High_lvl/../OS/../Estimators/orientation.h \
  ../Core/High_lvl/../High_lvl/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/High_lvl/../High_lvl/../OS/../Estimators/../Sensors/acc.h \
- ../Core/High_lvl/../High_lvl/../OS/../Estimators/../Kalman/Kalman.h \
+ ../Core/High_lvl/../High_lvl/../OS/../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/High_lvl/../High_lvl/../OS/../Regulation/Regu_orientation.h \
  ../Core/High_lvl/../High_lvl/../OS/../Regulation/../Estimators/orientation.h \
  c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\pid.h \
@@ -53,7 +54,8 @@ Core/High_lvl/High_lvl.o: ../Core/High_lvl/High_lvl.c \
  ../Core/High_lvl/../High_lvl/../OS/../Regulation/../config.h \
  ../Core/High_lvl/../High_lvl/../OS/../config.h \
  ../Core/High_lvl/../High_lvl/../OS/../Telemetry/Telemetry.h \
- ../Core/High_lvl/../High_lvl/../OS/../Simulation/simulation.h
+ ../Core/High_lvl/../High_lvl/../OS/../State_Space_Model/State_Space_Model.h \
+ ../Core/High_lvl/../High_lvl/../OS/../State_Space_Model/Kalman.h
 
 ../Core/High_lvl/../High_lvl/High_lvl.h:
 
@@ -145,9 +147,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/High_lvl/../High_lvl/../OS/../Estimators/../Sensors/acc.h:
 
-../Core/High_lvl/../High_lvl/../OS/../Estimators/../Kalman/Kalman.h:
+../Core/High_lvl/../High_lvl/../OS/../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/High_lvl/../High_lvl/../OS/../Regulation/Regu_orientation.h:
 
@@ -163,4 +167,6 @@ c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\Filters.h:
 
 ../Core/High_lvl/../High_lvl/../OS/../Telemetry/Telemetry.h:
 
-../Core/High_lvl/../High_lvl/../OS/../Simulation/simulation.h:
+../Core/High_lvl/../High_lvl/../OS/../State_Space_Model/State_Space_Model.h:
+
+../Core/High_lvl/../High_lvl/../OS/../State_Space_Model/Kalman.h:

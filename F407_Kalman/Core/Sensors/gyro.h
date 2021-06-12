@@ -27,11 +27,13 @@ typedef struct gyro_t{
 	float offsets[3];
 	//Filters
 	Filter_t filters[3];
+	//possibilité d'envoyer les données qqupart ^^
+	float * output ;
 
 
 }gyro_t;
 
-void GYRO_init(gyro_t * gyro, mpu_t * mpu);
+void GYRO_init(gyro_t * gyro, mpu_t * mpu, float * output);
 //void GYRO_update(gyro_t * gyro);
 //void GYRO_update_dma(gyro_t * gyro);
 //bool_e GYRO_calibrate(gyro_t * gyro, uint16_t iteration);

@@ -32,6 +32,7 @@
 #include "../OS/events/events.h"
 #include "../High_lvl/High_lvl.h"
 #include "../Data_Logger/Data_logger.h"
+#include "../State_Space_Model/Model.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -105,9 +106,10 @@ int main(void)
 	//Init du GYRO et de l ACC en utilisant un MPU6000
 	MPU_init(&sys.sensors.mpu, &hi2c1);
 	HAL_Delay(20);	//Let the time for the components to start
-	GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu);
+	GYRO_init(&sys.sensors.gyro, &sys.sensors.mpu, &sys.ss.z_array[MEASUREMENT_VECTOR_GYRO_Y]);
 	HAL_Delay(20);	//Let the time for the components to start
-	ACC_init(&sys.sensors.acc, &sys.sensors.mpu);
+	ACC_init(&sys.sensors.acc, &sys.sensors.mpu, &sys.ss.z_array[MEASUREMENT_VECTOR_ANGLE_Y]);
+
 
 
 	ORIENTATION_Init(&sys.orientation, &sys.sensors.gyro, &sys.sensors.acc, GYRO_FREQUENCY);
@@ -115,18 +117,11 @@ int main(void)
 	TELEMETRY_Init(&sys.telemetry, &huart1);
 	DATA_LOGGER_Init(&sys);
 
-	REGULATION_ORIENTATION_Init(&sys.regulation, &sys.orientation, &sys.prop.thrust_consigne[0]);
+	REGULATION_ORIENTATION_Init(&sys.regulation, &sys.orientation, sys.ss.u_array);
 	HIGH_LVL_Init(&sys);
-	MOTORS_Init(&sys.prop.motors, &htim1, sys.prop.thrust_consigne, TRUE);
+	MOTORS_Init(&sys.prop.motors, &htim1, sys.ss.u_array, MOTOR_DIRECTION_BIDIRECTIONAL, TRUE);
 
-	//-----------------------------------------------state space bricolage here
-	static arm_matrix_instance_f32 A ;
-	static float A_array[] = {0.9973, 0.009991, -0.5445, 0.9973};
-	arm_mat_init_f32(&A, 2, 2, A_array);
-
-	static float X_init[] = {50, 0};
-
-	STATE_SPACE_Init(&sys.state_space, &A, X_init);
+	MODEL_Init(&sys.ss, &sys.kalman);
 
 
 	SCHEDULER_init(&sys);

@@ -17,7 +17,8 @@
 #include "../Regulation/Regu_orientation.h"
 #include "../config.h"
 #include "../Telemetry/Telemetry.h"
-#include "../Simulation/simulation.h"
+#include "../State_Space_Model/State_Space_Model.h"
+#include "../State_Space_Model/Kalman.h"
 
 typedef struct sensors_t{
 	//Sensors
@@ -40,13 +41,14 @@ typedef struct prop_t{
 }prop_t;
 
 typedef struct system_t{
+	State_Space_Model_t ss;
+	kalman_t kalman;
 	sensors_t sensors ;
 	orientation_t orientation ;
 	regu_orientation_t regulation ;
 	soft_t soft;
 	prop_t prop;
 	telemetry_t telemetry ;
-	state_space_t state_space ;
 	bool_e simulate ;
 }system_t;
 

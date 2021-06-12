@@ -16,14 +16,21 @@ typedef enum motors_state_e{
 	MOTORS_STATE_RUNNING
 }motors_state_e;
 
+typedef enum motor_direction_e{
+	MOTOR_DIRECTION_NORMAL,
+	MOTOR_DIRECTION_BIDIRECTIONAL
+}motor_direction_e;
+
 typedef struct motors_t{
 	TIM_HandleTypeDef * htim;
 	motors_state_e state ;
-	int16_t * duty;
+	motor_direction_e direction ;
+	float * input;
+	float duty[4];
 	HAL_StatusTypeDef hal_state;
 }motors_t;
 
-void MOTORS_Init(motors_t * motors, TIM_HandleTypeDef * htim, int16_t * duty, bool_e start);
+void MOTORS_Init(motors_t * motors, TIM_HandleTypeDef * htim, float * input, motor_direction_e direction, bool_e start);
 void MOTORS_Start(motors_t * motors);
 void MOTORS_Stop(motors_t * motors);
 void MOTORS_Change_output(motors_t * motors);

@@ -38,8 +38,9 @@ Core/Regulation/Regu_orientation.o: ../Core/Regulation/Regu_orientation.c \
  ../Core/Regulation/../Estimators/../Sensors/mpu.h \
  ../Core/Regulation/../Estimators/../Sensors/../OS/macro_types.h \
  ../Core/Regulation/../Estimators/../Sensors/acc.h \
- ../Core/Regulation/../Estimators/../Kalman/Kalman.h \
+ ../Core/Regulation/../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/Regulation/../../Drivers/Inc/Pid.h \
  ../Core/Regulation/../../Drivers/Inc/../../Core/OS/macro_types.h \
  ../Core/Regulation/../../Drivers/Inc/Filters.h \
@@ -123,9 +124,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/Regulation/../Estimators/../Sensors/acc.h:
 
-../Core/Regulation/../Estimators/../Kalman/Kalman.h:
+../Core/Regulation/../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/Regulation/../../Drivers/Inc/Pid.h:
 

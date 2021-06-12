@@ -22,7 +22,7 @@ float filter_pid_angle[3] = {1.0f, 0.0f, 0.0f};
 float pid_angle_settings[PID_NB_SETTINGS] = {6.0f, 0.0f, 0.0f, REGU_ORIENTATION_FREQUENCY, 500};
 
 
-void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orientation_t * orientation_, int16_t * output){
+void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orientation_t * orientation_, float * output){
 	orientation = orientation_ ;
 	regu_orientation = regu_orientation_ ;
 	regu_orientation->mode = REGULATION_MODE_OFF ;
@@ -49,7 +49,7 @@ void REGULATION_ORIENTATION_Process(void){
 			*regu_orientation->output = 0;
 			break;
 		case REGULATION_MODE_MANUAL:
-			*regu_orientation->output = regu_orientation->motor_consigne;
+			*regu_orientation->output = (float)regu_orientation->motor_consigne;
 			break;
 	}
 

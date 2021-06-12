@@ -12,7 +12,7 @@
 
 #include "../Sensors/gyro.h"
 #include "../Sensors/acc.h"
-#include "../Kalman/Kalman.h"
+#include "../State_Space_Model/Kalman.h"
 #include "math.h"
 
 typedef enum Orientation_Axes_e{

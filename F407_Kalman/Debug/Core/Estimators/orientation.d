@@ -36,8 +36,9 @@ Core/Estimators/orientation.o: ../Core/Estimators/orientation.c \
  ../Core/Estimators/../Sensors/mpu.h \
  ../Core/Estimators/../Sensors/../OS/macro_types.h \
  ../Core/Estimators/../Sensors/acc.h \
- ../Core/Estimators/../Kalman/Kalman.h \
- ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h
+ ../Core/Estimators/../State_Space_Model/Kalman.h \
+ ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ ../Core/Estimators/../State_Space_Model/../State_Space_Model/State_Space_Model.h
 
 ../Core/Estimators/orientation.h:
 
@@ -115,6 +116,8 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/Estimators/../Sensors/acc.h:
 
-../Core/Estimators/../Kalman/Kalman.h:
+../Core/Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+../Core/Estimators/../State_Space_Model/../State_Space_Model/State_Space_Model.h:

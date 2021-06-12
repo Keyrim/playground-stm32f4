@@ -45,8 +45,9 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  ../Core/Telemetry/../Data_Logger/../OS/../Estimators/orientation.h \
  c:\workspace\github\stm32_test_area\f407_kalman\core\sensors\gyro.h \
  c:\workspace\github\stm32_test_area\f407_kalman\core\sensors\acc.h \
- c:\workspace\github\stm32_test_area\f407_kalman\core\kalman\kalman.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h \
  c:\workspace\github\stm32_test_area\f407_kalman\core\estimators\orientation.h \
  c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\pid.h \
@@ -54,7 +55,8 @@ Core/Telemetry/Telemetry.o: ../Core/Telemetry/Telemetry.c \
  c:\workspace\github\stm32_test_area\f407_kalman\core\config.h \
  ../Core/Telemetry/../Data_Logger/../OS/../config.h \
  ../Core/Telemetry/../Data_Logger/../OS/../Telemetry/Telemetry.h \
- ../Core/Telemetry/../Data_Logger/../OS/../Simulation/simulation.h
+ ../Core/Telemetry/../Data_Logger/../OS/../State_Space_Model/State_Space_Model.h \
+ ../Core/Telemetry/../Data_Logger/../OS/../State_Space_Model/Kalman.h
 
 ../Core/Telemetry/Telemetry.h:
 
@@ -148,9 +150,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\sensors\gyro.h:
 
 c:\workspace\github\stm32_test_area\f407_kalman\core\sensors\acc.h:
 
-c:\workspace\github\stm32_test_area\f407_kalman\core\kalman\kalman.h:
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Regulation/Regu_orientation.h:
 
@@ -166,4 +170,6 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\config.h:
 
 ../Core/Telemetry/../Data_Logger/../OS/../Telemetry/Telemetry.h:
 
-../Core/Telemetry/../Data_Logger/../OS/../Simulation/simulation.h:
+../Core/Telemetry/../Data_Logger/../OS/../State_Space_Model/State_Space_Model.h:
+
+../Core/Telemetry/../Data_Logger/../OS/../State_Space_Model/Kalman.h:

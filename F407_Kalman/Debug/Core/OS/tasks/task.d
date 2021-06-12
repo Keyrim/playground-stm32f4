@@ -42,8 +42,9 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Estimators/orientation.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/tasks/../../Estimators/../Sensors/acc.h \
- ../Core/OS/tasks/../../Estimators/../Kalman/Kalman.h \
+ ../Core/OS/tasks/../../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/OS/tasks/../../Regulation/Regu_orientation.h \
  ../Core/OS/tasks/../../Regulation/../Estimators/orientation.h \
  ../Core/OS/tasks/../../Regulation/../../Drivers/Inc/Pid.h \
@@ -52,7 +53,8 @@ Core/OS/tasks/task.o: ../Core/OS/tasks/task.c ../Core/OS/tasks/task.h \
  ../Core/OS/tasks/../../Regulation/../config.h \
  ../Core/OS/tasks/../../config.h \
  ../Core/OS/tasks/../../Telemetry/Telemetry.h \
- ../Core/OS/tasks/../../Simulation/simulation.h \
+ ../Core/OS/tasks/../../State_Space_Model/State_Space_Model.h \
+ ../Core/OS/tasks/../../State_Space_Model/Kalman.h \
  ../Core/OS/tasks/../scheduler/scheduler.h \
  ../Core/OS/tasks/../scheduler/../tasks/task.h \
  ../Core/OS/tasks/../scheduler/../macro_types.h \
@@ -161,9 +163,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/OS/tasks/../../Estimators/../Sensors/acc.h:
 
-../Core/OS/tasks/../../Estimators/../Kalman/Kalman.h:
+../Core/OS/tasks/../../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/OS/tasks/../../Regulation/Regu_orientation.h:
 
@@ -181,7 +185,9 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/OS/tasks/../../Telemetry/Telemetry.h:
 
-../Core/OS/tasks/../../Simulation/simulation.h:
+../Core/OS/tasks/../../State_Space_Model/State_Space_Model.h:
+
+../Core/OS/tasks/../../State_Space_Model/Kalman.h:
 
 ../Core/OS/tasks/../scheduler/scheduler.h:
 

@@ -14,6 +14,7 @@
 #include "../../config.h"
 
 
+
 static system_t * sys;
 
 
@@ -26,14 +27,15 @@ void tasks_init(system_t * sys_){
 
 	//Activation des tâches
 	SCHEDULER_enable_task(TASK_SCHEDULER, TRUE);
-	SCHEDULER_enable_task(TASK_PRINTF, TRUE);
+	SCHEDULER_enable_task(TASK_PRINTF, FALSE);
 	SCHEDULER_enable_task(TASK_EVENT_CHECK, TRUE);
 	SCHEDULER_enable_task(TASK_TELEMETRIE, TRUE);
 	SCHEDULER_enable_task(TASK_LOGGER, TRUE);
 	SCHEDULER_enable_task(TASK_ORIENTATION_UPDATE, TRUE);
-	SCHEDULER_enable_task(TASK_GYRO_UPDATE, FALSE);
+	SCHEDULER_enable_task(TASK_GYRO_UPDATE, TRUE);
 	SCHEDULER_enable_task(TASK_GYRO_FILTER, TRUE);
 	SCHEDULER_enable_task(TASK_ACC_FILTER, TRUE);
+	SCHEDULER_enable_task(TASK_ACC_UPDATE, FALSE);
 	SCHEDULER_enable_task(TASK_HIGH_LVL, TRUE);
 	SCHEDULER_enable_task(TASK_MONITORING, TRUE);
 	SCHEDULER_enable_task(TASK_STUFF_MADE_HERE, TRUE);
@@ -70,6 +72,7 @@ void process_acc_update(uint32_t current_time_us){
 
 void process_acc_filter(uint32_t current_time_us){
 	ACC_process_lpf(&sys->sensors.acc);
+	ACC_process_angle(&sys->sensors.acc);
 }
 
 void process_event_main(uint32_t current_time_us){
@@ -79,8 +82,10 @@ void process_event_main(uint32_t current_time_us){
 
 void process_orientation_update(uint32_t current_time_us){
 	ORIENTATION_Update(&sys->orientation);
+	KALMAN_Update(&sys->kalman);
 	REGULATION_ORIENTATION_Process();
 	MOTORS_Change_output(&sys->prop.motors);
+	KALMAN_Predict(&sys->kalman);
 }
 
 void process_task_scheduler(uint32_t current_time_us){
@@ -101,8 +106,7 @@ void process_high_lvl(uint32_t current_time_us){
 
 
 void process_stuff_made_here(uint32_t current_time_us){
-	if(sys->simulate)
-		STATE_SPACE_Step(&sys->state_space);
+
 }
 
 void process_self_test(uint32_t current_time_us){
@@ -141,8 +145,6 @@ task_t tasks [TASK_COUNT] ={
 	[TASK_TELEMETRIE] = 					DEFINE_TASK(TASK_TELEMETRIE, 					PRIORITY_MEDIUM,	 	process_telemetry, 			PERIOD_US_FROM_HERTZ(1000), 				TASK_MODE_TIME),
 	[TASK_MONITORING] = 					DEFINE_TASK(TASK_MONITORING, 					PRIORITY_LOW,	 		process_self_test, 			PERIOD_US_FROM_HERTZ(50), 					TASK_MODE_TIME),
 	[TASK_STUFF_MADE_HERE] = 				DEFINE_TASK(TASK_STUFF_MADE_HERE, 				PRIORITY_LOW,	 		process_stuff_made_here, 	PERIOD_US_FROM_HERTZ(100), 					TASK_MODE_TIME),
-
-
 };
 
 

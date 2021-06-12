@@ -22,7 +22,6 @@ SUBDIRS := \
 Core/Data_Logger \
 Core/Estimators \
 Core/High_lvl \
-Core/Kalman \
 Core/OS/debug \
 Core/OS/events \
 Core/OS/scheduler \
@@ -30,9 +29,9 @@ Core/OS/tasks \
 Core/OS \
 Core/Regulation \
 Core/Sensors \
-Core/Simulation \
 Core/Src \
 Core/Startup \
+Core/State_Space_Model \
 Core/Telemetry \
 Drivers/STM32F4xx_HAL_Driver/Src \
 Drivers/Src \

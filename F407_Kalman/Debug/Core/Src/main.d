@@ -43,8 +43,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/../Estimators/orientation.h \
  ../Core/Src/../OS/../Estimators/../Sensors/gyro.h \
  ../Core/Src/../OS/../Estimators/../Sensors/acc.h \
- ../Core/Src/../OS/../Estimators/../Kalman/Kalman.h \
+ ../Core/Src/../OS/../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/Src/../OS/../Regulation/Regu_orientation.h \
  ../Core/Src/../OS/../Regulation/../Estimators/orientation.h \
  ../Core/Src/../OS/../Regulation/../../Drivers/Inc/Pid.h \
@@ -52,7 +53,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../OS/../Regulation/../../Drivers/Inc/Filters.h \
  ../Core/Src/../OS/../Regulation/../config.h \
  ../Core/Src/../OS/../config.h ../Core/Src/../OS/../Telemetry/Telemetry.h \
- ../Core/Src/../OS/../Simulation/simulation.h \
+ ../Core/Src/../OS/../State_Space_Model/State_Space_Model.h \
+ ../Core/Src/../OS/../State_Space_Model/Kalman.h \
  ../Core/Src/../OS/scheduler/scheduler.h \
  ../Core/Src/../OS/scheduler/../tasks/task.h \
  ../Core/Src/../OS/scheduler/../tasks/../system_d.h \
@@ -67,7 +69,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Src/../High_lvl/High_lvl.h \
  ../Core/Src/../High_lvl/../OS/system_d.h \
  ../Core/Src/../Data_Logger/Data_logger.h \
- ../Core/Src/../Data_Logger/../OS/system_d.h
+ ../Core/Src/../Data_Logger/../OS/system_d.h \
+ ../Core/Src/../State_Space_Model/Model.h \
+ ../Core/Src/../State_Space_Model/State_Space_Model.h \
+ ../Core/Src/../State_Space_Model/Kalman.h
 
 ../Core/Inc/main.h:
 
@@ -171,9 +176,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/Src/../OS/../Estimators/../Sensors/acc.h:
 
-../Core/Src/../OS/../Estimators/../Kalman/Kalman.h:
+../Core/Src/../OS/../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/Src/../OS/../Regulation/Regu_orientation.h:
 
@@ -191,7 +198,9 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/Src/../OS/../Telemetry/Telemetry.h:
 
-../Core/Src/../OS/../Simulation/simulation.h:
+../Core/Src/../OS/../State_Space_Model/State_Space_Model.h:
+
+../Core/Src/../OS/../State_Space_Model/Kalman.h:
 
 ../Core/Src/../OS/scheduler/scheduler.h:
 
@@ -226,3 +235,9 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 ../Core/Src/../Data_Logger/Data_logger.h:
 
 ../Core/Src/../Data_Logger/../OS/system_d.h:
+
+../Core/Src/../State_Space_Model/Model.h:
+
+../Core/Src/../State_Space_Model/State_Space_Model.h:
+
+../Core/Src/../State_Space_Model/Kalman.h:

@@ -10,6 +10,7 @@
 #include "../OS/tasks/task.h"
 #include "../OS/scheduler/scheduler.h"
 #include "../High_lvl/High_lvl.h"
+#include "../State_Space_Model/Model.h"
 static system_t * sys ;
 
 
@@ -68,6 +69,11 @@ static uint8_t name_roll_gyro_raw [] = "Gyro raw ROLL";
 static uint8_t name_pitch_gyro_raw[] = "Gyro raw PITCH";
 static uint8_t name_yaw_gyro_raw[] = "Gyro raw YAW";
 
+static uint8_t name_state_vector_angle_y[] = "State Angle Y";
+static uint8_t name_state_vector_gyro_y[] = "State Gyro Y";
+static uint8_t name_kalman_predict_angle_y[] = "Predict Angle Y";
+static uint8_t name_kalman_predict_gyro_y[] = "Predict Gyro Y";
+
 static uint8_t name_simulation_output1[] = "Simu Y1";
 
 static uint8_t name_config_request[] = "Send Config";
@@ -88,37 +94,41 @@ void DATA_LOGGER_Init(system_t * sys_){
 
 	//	-----------------------------------------------	Définitions des data	-----------------------------------------------------------------
 	//Angle
-	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 							DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle,							NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_ROLL_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle,							NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							USED_AS_OUTPUT);
 
 	//Angles acc
-	DEFINE_DATA(DATA_ID_ROLL_ACC_ANGLE, (uint8_t*)&sys->orientation.acc_angles[ORIENTATION_ROLL], 								DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle_acc,						NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_ACC_ANGLE, (uint8_t*)&sys->orientation.acc_angles[ORIENTATION_PITCH], 							DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle_acc,						NOT_USED);
+	DEFINE_DATA(DATA_ID_ROLL_ACC_ANGLE, (uint8_t*)&sys->sensors.acc.angles[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle_acc,						NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_ACC_ANGLE, (uint8_t*)&sys->sensors.acc.angles[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle_acc,						USED_AS_OUTPUT);
 
 	//Angle rate
-	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 							NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 							USED_AS_OUTPUT);
-	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			 					NOT_USED);
+	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 											DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 							NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 											DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 							USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 												DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			 					NOT_USED);
 
 	//Acceleration
-	DEFINE_DATA(DATA_ID_ROLL_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc, 								NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc, 							NOT_USED);
-	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc, 								NOT_USED);
+	DEFINE_DATA(DATA_ID_ROLL_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_ROLL], 												DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc, 								NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_PITCH], 											DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc, 							NOT_USED);
+	DEFINE_DATA(DATA_ID_YAW_ACC, (uint8_t*)&sys->sensors.acc.filtered[ORIENTATION_YAW], 												DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc, 								NOT_USED);
 
 	//Acceleration
-	DEFINE_DATA(DATA_ID_ROLL_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc_raw, 							NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_PITCH], 										DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc_raw, 						NOT_USED);
-	DEFINE_DATA(DATA_ID_YAW_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_YAW], 											DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc_raw, 							NOT_USED);
+	DEFINE_DATA(DATA_ID_ROLL_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_ROLL], 												DATA_FORMAT_16B_FLOAT_3D, 	name_roll_acc_raw, 							NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_PITCH], 												DATA_FORMAT_16B_FLOAT_3D, 	name_pitch_acc_raw, 						NOT_USED);
+	DEFINE_DATA(DATA_ID_YAW_ACC_RAW, (uint8_t*)&sys->sensors.acc.raw[ORIENTATION_YAW], 													DATA_FORMAT_16B_FLOAT_3D, 	name_yaw_acc_raw, 							NOT_USED);
 
 	//Angle Rate raw
-	DEFINE_DATA(DATA_ID_ROLL_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro_raw, 						NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,						NOT_USED);
-	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 										DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 							NOT_USED);
+	DEFINE_DATA(DATA_ID_ROLL_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 												DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro_raw, 						NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 											DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,						NOT_USED);
+	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 												DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 							NOT_USED);
 
+	DEFINE_DATA(DATA_ID_STATE_VECTOR_ANGLE_Y, (uint8_t*)&sys->ss.x_array[STATE_VECTOR_ANGLE_Y], 										DATA_FORMAT_16B_FLOAT_1D, 	name_state_vector_angle_y, 					USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_STATE_VECTOR_GYRO_Y, (uint8_t*)&sys->ss.x_array[STATE_VECTOR_ANGLE_RATE_Y], 									DATA_FORMAT_16B_FLOAT_1D, 	name_state_vector_gyro_y, 					USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_KALMAN_STATE_VECTOR_ANGLE_Y_PREDICT, (uint8_t*)&sys->kalman.x_predict_array[STATE_VECTOR_ANGLE_Y], 				DATA_FORMAT_16B_FLOAT_1D, 	name_kalman_predict_angle_y, 				USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_KALMAN_STATE_VECTOR_ANGLE_RATE_Y_PREDICT, (uint8_t*)&sys->kalman.x_predict_array[STATE_VECTOR_ANGLE_RATE_Y],	DATA_FORMAT_16B_FLOAT_1D, 	name_kalman_predict_gyro_y, 				USED_AS_OUTPUT);
 
-	DEFINE_DATA(DATA_ID_SIMULATION_OUTPUT1,	 (uint8_t*)sys->state_space.X_array, 											DATA_FORMAT_16B_FLOAT_2D, 	name_simulation_output1, 					USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_SIMULATION_OUTPUT1,	 NULL, 																						DATA_FORMAT_16B_FLOAT_2D, 	name_simulation_output1, 					NOT_USED);
 
-	DEFINE_DATA(DATA_ID_MCU_LOAD,	 (uint8_t*)&sys->soft.cpu_load, 															DATA_FORMAT_16B_FLOAT_2D, 	name_mcu_load, 								USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_MCU_LOAD,	 (uint8_t*)&sys->soft.cpu_load, 																	DATA_FORMAT_16B_FLOAT_2D, 	name_mcu_load, 								USED_AS_OUTPUT);
 
 	//Buttons
 	DEFINE_DATA(DATA_ID_CONFIG_REQUEST, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_config_request, 						USED_AS_INPUT );
@@ -129,7 +139,7 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_START_SIMULATION, 	NULL, 																				DATA_FORMAT_0B_BUTTON, 		name_start_simulation, 						USED_AS_INPUT);
 
 
-	DEFINE_DATA(DATA_ID_INPUT_PWM_1, 		NULL, 																				DATA_FORMAT_16B_UINT16, 	name_input_pwm1, 							USED_AS_INPUT);
+	DEFINE_DATA(DATA_ID_INPUT_PWM_1, 		NULL, 																				DATA_FORMAT_16B_INT16, 	name_input_pwm1, 							USED_AS_INPUT);
 
 
 }
@@ -235,6 +245,7 @@ void DATA_LOGGER_Main(void){
 void DATA_LOGGER_Reception(uint8_t * input_buffer){
 	uint8_t id = input_buffer[0];
 	uint16_t tmp_uint_16 = 0 ;
+	int16_t tmp_int_16 = 0;
 	switch(data_list[id].format){
 		case DATA_FORMAT_0B_BUTTON:
 			//We can create an action for each id
@@ -271,14 +282,24 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 		case DATA_FORMAT_8B_PWM:
 			tmp_uint_16 = 4*input_buffer[1];
 			break;
-		case DATA_FORMAT_16B:
+		case DATA_FORMAT_16B_INT16:
+			tmp_int_16 = (int16_t)input_buffer[1] << 8;
+			tmp_int_16 += (int16_t)input_buffer[2];
+			switch(id){
+				case DATA_ID_INPUT_PWM_1:
+					sys->regulation.motor_consigne = MIN(500, tmp_int_16);
+					break;
+				default:
+					break;
+			}
+
 			break;
 		case DATA_FORMAT_16B_UINT16:
 			tmp_uint_16 = (uint16_t)input_buffer[1] << 8;
 			tmp_uint_16 += (uint16_t)input_buffer[2];
 			switch(id){
 				case DATA_ID_INPUT_PWM_1:
-					sys->regulation.motor_consigne = MIN(1000, tmp_uint_16);
+					sys->regulation.motor_consigne = MIN(130, tmp_uint_16);
 					break;
 				default:
 					break;

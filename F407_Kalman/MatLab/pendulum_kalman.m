@@ -3,16 +3,16 @@
 %Définitions des paramètres
 syms a m g r theta(t) ;
 gValue = 9.81;      %g ..
-rValue = 0.20;      %Longeur du bras
-mValue = 0.300;     %Masse en Kg
-kValue = 0.000010;      %Coef force de frottement
-dt = 0.01 ;
-omega_0Value = sqrt(gValue/rValue);
+rPoids = 0.19;      %Longeur pendule
+rMoteur = 0.24;     %Longeur bras levier moteur
+mValue = 0.312;     %Masse en Kg
+kValue = 0.1;      %Coef force de frottement
+dt = 0.001 ;
 
-%% Matrice qui décrit la physique du système
+%% Matrice qui décrit la physique du système 
 A = [0 1;
-    -omega_0Value^2 -kValue/mValue]
-B = [0; 1 / mValue];
+    -gValue/rPoids -kValue/mValue];
+B = [0; (0.8 * rMoteur) / ((rPoids^2) * mValue)];    %0.0186 car F force du moteur est F(u) = 0.0186*u
 C = eye(2);
 D = [0; 0];
 
@@ -52,7 +52,7 @@ uDIST = randn(2, size(t, 2));
 uNOISE = randn(2, size(t, 2));
 
 u = 0*t ;
-u(500:3000) = 100 ;
+u(500:5000) = 30 ;
 
 uAUG = [u; Vd*uDIST; Vn*uNOISE];
 

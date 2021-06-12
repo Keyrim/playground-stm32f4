@@ -45,8 +45,9 @@ Core/OS/events/events.o: ../Core/OS/events/events.c \
  ../Core/OS/events/../../Estimators/orientation.h \
  ../Core/OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/OS/events/../../Estimators/../Sensors/acc.h \
- ../Core/OS/events/../../Estimators/../Kalman/Kalman.h \
+ ../Core/OS/events/../../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/OS/events/../../Regulation/Regu_orientation.h \
  ../Core/OS/events/../../Regulation/../Estimators/orientation.h \
  ../Core/OS/events/../../Regulation/../../Drivers/Inc/Pid.h \
@@ -55,7 +56,8 @@ Core/OS/events/events.o: ../Core/OS/events/events.c \
  ../Core/OS/events/../../Regulation/../config.h \
  ../Core/OS/events/../../config.h \
  ../Core/OS/events/../../Telemetry/Telemetry.h \
- ../Core/OS/events/../../Simulation/simulation.h \
+ ../Core/OS/events/../../State_Space_Model/State_Space_Model.h \
+ ../Core/OS/events/../../State_Space_Model/Kalman.h \
  ../Core/OS/events/../scheduler/scheduler.h \
  ../Core/OS/events/../scheduler/../tasks/task.h \
  ../Core/OS/events/../scheduler/../tasks/../system_d.h \
@@ -164,9 +166,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/OS/events/../../Estimators/../Sensors/acc.h:
 
-../Core/OS/events/../../Estimators/../Kalman/Kalman.h:
+../Core/OS/events/../../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/OS/events/../../Regulation/Regu_orientation.h:
 
@@ -184,7 +188,9 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/OS/events/../../Telemetry/Telemetry.h:
 
-../Core/OS/events/../../Simulation/simulation.h:
+../Core/OS/events/../../State_Space_Model/State_Space_Model.h:
+
+../Core/OS/events/../../State_Space_Model/Kalman.h:
 
 ../Core/OS/events/../scheduler/scheduler.h:
 

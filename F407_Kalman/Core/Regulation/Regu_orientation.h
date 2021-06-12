@@ -27,10 +27,10 @@ typedef struct regu_orientation_t{
 	float consigne_angular_pos;
 	float consigne_angular_speed;
 	int16_t motor_consigne;
-	int16_t  * output;		//Output for the motor
+	float  * output;		//Output for the motor
 }regu_orientation_t;
 
-void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orientation_t * orientation_, int16_t * output);
+void REGULATION_ORIENTATION_Init(regu_orientation_t * regu_orientation_, orientation_t * orientation_, float * output);
 void REGULATION_ORIENTATION_Set_Regulation_Mode(regulation_mode_e regu_mode);
 void REGULATION_ORIENTATION_Process(void);
 

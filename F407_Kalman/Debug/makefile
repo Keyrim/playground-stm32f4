@@ -11,9 +11,9 @@ RM := rm -rf
 -include Drivers/Src/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Telemetry/subdir.mk
+-include Core/State_Space_Model/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
--include Core/Simulation/subdir.mk
 -include Core/Sensors/subdir.mk
 -include Core/Regulation/subdir.mk
 -include Core/OS/tasks/subdir.mk
@@ -21,7 +21,6 @@ RM := rm -rf
 -include Core/OS/events/subdir.mk
 -include Core/OS/debug/subdir.mk
 -include Core/OS/subdir.mk
--include Core/Kalman/subdir.mk
 -include Core/High_lvl/subdir.mk
 -include Core/Estimators/subdir.mk
 -include Core/Data_Logger/subdir.mk

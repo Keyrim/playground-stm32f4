@@ -48,8 +48,9 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Estimators/orientation.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/gyro.h \
  ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h \
- ../Core/Sensors/../OS/events/../../Estimators/../Kalman/Kalman.h \
+ ../Core/Sensors/../OS/events/../../Estimators/../State_Space_Model/Kalman.h \
  ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h \
+ c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h \
  ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h \
  ../Core/Sensors/../OS/events/../../Regulation/../Estimators/orientation.h \
  c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\pid.h \
@@ -58,7 +59,8 @@ Core/Sensors/acc.o: ../Core/Sensors/acc.c ../Core/Sensors/acc.h \
  ../Core/Sensors/../OS/events/../../Regulation/../config.h \
  ../Core/Sensors/../OS/events/../../config.h \
  ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h \
- ../Core/Sensors/../OS/events/../../Simulation/simulation.h
+ ../Core/Sensors/../OS/events/../../State_Space_Model/State_Space_Model.h \
+ ../Core/Sensors/../OS/events/../../State_Space_Model/Kalman.h
 
 ../Core/Sensors/acc.h:
 
@@ -164,9 +166,11 @@ c:\workspace\github\stm32_test_area\f407_kalman\core\os\macro_types.h:
 
 ../Core/Sensors/../OS/events/../../Estimators/../Sensors/acc.h:
 
-../Core/Sensors/../OS/events/../../Estimators/../Kalman/Kalman.h:
+../Core/Sensors/../OS/events/../../Estimators/../State_Space_Model/Kalman.h:
 
 ../Drivers/CMSIS/Include/../DSP/Include/arm_math.h:
+
+c:\workspace\github\stm32_test_area\f407_kalman\core\state_space_model\state_space_model.h:
 
 ../Core/Sensors/../OS/events/../../Regulation/Regu_orientation.h:
 
@@ -184,4 +188,6 @@ c:\workspace\github\stm32_test_area\f407_kalman\drivers\inc\Filters.h:
 
 ../Core/Sensors/../OS/events/../../Telemetry/Telemetry.h:
 
-../Core/Sensors/../OS/events/../../Simulation/simulation.h:
+../Core/Sensors/../OS/events/../../State_Space_Model/State_Space_Model.h:
+
+../Core/Sensors/../OS/events/../../State_Space_Model/Kalman.h:

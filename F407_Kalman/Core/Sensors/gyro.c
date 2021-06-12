@@ -13,18 +13,19 @@
 float filter[3] = {0.04f, 1.6f, -0.64f};
 static void gyro_data_callback(void);
 
-void GYRO_init(gyro_t * gyro, mpu_t * mpu){
+void GYRO_init(gyro_t * gyro, mpu_t * mpu, float * output){
 
 	//Filters init
-	FILTER_init(&gyro->filters[ORIENTATION_ROLL], filter, FILTER_SECOND_ORDER);
-	FILTER_init(&gyro->filters[ORIENTATION_PITCH], filter, FILTER_SECOND_ORDER);
-	FILTER_init(&gyro->filters[ORIENTATION_YAW], filter, FILTER_SECOND_ORDER);
+	FILTER_init(&gyro->filters[ORIENTATION_ROLL], filter, FILTER_NO_FILTERING);
+	FILTER_init(&gyro->filters[ORIENTATION_PITCH], filter, FILTER_NO_FILTERING);
+	FILTER_init(&gyro->filters[ORIENTATION_YAW], filter, FILTER_NO_FILTERING);
 
 	gyro->mpu = mpu ;
+	gyro->output = output ;
 	gyro->raw = gyro->mpu->gyro ;
 
 	gyro->offsets[ORIENTATION_ROLL] = 0.0f;
-	gyro->offsets[ORIENTATION_PITCH] = 0.0f ;
+	gyro->offsets[ORIENTATION_PITCH] = -0.88356f ;
 	gyro->offsets[ORIENTATION_YAW] = 0.0f ;
 
 	//Raise the flag "ok" if the gyro get succesfully initiated
@@ -129,6 +130,8 @@ void GYRO_process_lpf(gyro_t * gyro){
 	gyro->filtered[1] =  FILTER_process(&gyro->filters[1], gyro->raw[1]);
 	gyro->filtered[2] =  FILTER_process(&gyro->filters[2], gyro->raw[2]);
 	//We warn the system that we ve got new data ready to be used :)
+	if(gyro->output)
+		*gyro->output = gyro->filtered[1];
 	EVENT_Set_flag(FLAG_GYRO_FILTERED_DATA_READY);
 }
 

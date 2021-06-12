@@ -34,9 +34,23 @@ typedef enum data_id_e{
 	DATA_ID_PITCH_ACC_RAW,
 	DATA_ID_YAW_ACC_RAW,
 
+	//State space vector
+	DATA_ID_STATE_VECTOR_ANGLE_Y,
+	DATA_ID_STATE_VECTOR_GYRO_Y,
+
+	//Kalman's estimation of state space vector
+	DATA_ID_KALMAN_STATE_VECTOR_ANGLE_Y_PREDICT,
+	DATA_ID_KALMAN_STATE_VECTOR_ANGLE_RATE_Y_PREDICT,
+
 	DATA_ID_CONSIGNE_ANGLE_ROLL,
 
 	DATA_ID_SIMULATION_OUTPUT1,
+
+	DATA_ID_MCU_LOAD,
+
+
+	//Inputs
+	DATA_ID_INPUT_PWM_1,
 
 	//Buttons
 	DATA_ID_CONFIG_REQUEST,		//Si je reçois ça, j'envoit la configuration des données
@@ -45,12 +59,6 @@ typedef enum data_id_e{
 	DATA_ID_IDLE_MODE,
 	DATA_ID_FULL_MANUAL_MODE,
 	DATA_ID_START_SIMULATION,
-
-	DATA_ID_MCU_LOAD,
-
-
-	//Inputs
-	DATA_ID_INPUT_PWM_1,
 
 	DATA_ID_COUNT
 }data_id_e;
