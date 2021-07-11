@@ -7,7 +7,7 @@ rPoids = 0.19;      %Longeur pendule
 rMoteur = 0.24;     %Longeur bras levier moteur
 mValue = 0.312;     %Masse en Kg
 kValue = 0.1;      %Coef force de frottement
-dt = 0.001 ;
+dt = 0.01 ;
 
 %% Matrice qui décrit la physique du système 
 A = [0 1;
@@ -52,21 +52,22 @@ uDIST = randn(2, size(t, 2));
 uNOISE = randn(2, size(t, 2));
 
 u = 0*t ;
-u(500:5000) = 30 ;
+u(500:5000) = 40 ;
 
 uAUG = [u; Vd*uDIST; Vn*uNOISE];
 
 [y, t] = lsim(sysReal, uAUG, t);
-plot(t, y(:,1));
+%plot(t, y(:,1));
 
 [x_true, t] = lsim(sysPerfect, uAUG, t);
 hold on
-plot(t, x_true(:,1), 'r', 'LineWidth', 2.0);
+plot(t, x_true(:,2), 'r', 'LineWidth', 2.0);
+plot(t, x_true(:,1), 'b', 'LineWidth', 2.0);
 
 %u(500:3000) = 0 ;
 
 [x, t] = lsim(sysKF, [u; y'], t);
-plot(t, x(:,1), 'k--', 'LineWidth', 2.00);
+%plot(t, x(:,1), 'k--', 'LineWidth', 2.00);
 
 hold off
 %%

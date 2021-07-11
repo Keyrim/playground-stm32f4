@@ -1,5 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
 ################################################################################
 
 -include ../makefile.init
@@ -41,6 +42,12 @@ endif
 
 -include ../makefile.defs
 
+OPTIONAL_TOOL_DEPS := \
+$(wildcard ../makefile.defs) \
+$(wildcard ../makefile.init) \
+$(wildcard ../makefile.targets) \
+
+
 BUILD_ARTIFACT_NAME := Kalman_Project
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
@@ -67,22 +74,22 @@ all: main-build
 main-build: Kalman_Project.elf secondary-outputs
 
 # Tool invocations
-Kalman_Project.elf: $(OBJS) $(USER_OBJS) C:\WorkSpace\GitHub\STM32_Test_Area\F407_Kalman\STM32F407VGTX_FLASH.ld
-	arm-none-eabi-gcc -o "Kalman_Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\WorkSpace\GitHub\STM32_Test_Area\F407_Kalman\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Kalman_Project.map" -Wl,--gc-sections -static -L"../Drivers/CMSIS/Lib/GCC" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Kalman_Project.elf: $(OBJS) $(USER_OBJS) C:\Workspace\Github\STM32_Test_Area\F407_Kalman\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Kalman_Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Workspace\Github\STM32_Test_Area\F407_Kalman\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Kalman_Project.map" -Wl,--gc-sections -static -Wl,--start-group -larm_cortexM4lf_math -Wl,--end-group -L"../Drivers/CMSIS/Lib/GCC" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-default.size.stdout: $(EXECUTABLES)
+default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Kalman_Project.list: $(EXECUTABLES)
+Kalman_Project.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Kalman_Project.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Kalman_Project.bin: $(EXECUTABLES)
+Kalman_Project.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Kalman_Project.bin"
 	@echo 'Finished building: $@'
 	@echo ' '

@@ -1,2 +1,2 @@
 time.c:11:10:TIME_us	8	static,ignoring_inline_asm
-time.c:28:6:TIME_delay_us_blocking	24	static,ignoring_inline_asm
+time.c:28:6:TIME_delay_us_blocking	8	static

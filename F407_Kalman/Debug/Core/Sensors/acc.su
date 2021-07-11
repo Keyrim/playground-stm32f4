@@ -1,4 +1,5 @@
-acc.c:149:13:acc_data_callback	0	static
-acc.c:19:6:ACC_init	16	static
-acc.c:100:6:ACC_process_lpf	8	static
-acc.c:118:6:ACC_process_angle	16	static
+acc.c:113:14:acc_correction	0	static
+acc.c:148:13:acc_data_callback	8	static
+acc.c:19:6:ACC_init	24	static
+acc.c:99:6:ACC_process_lpf	8	static
+acc.c:117:6:ACC_process_angle	8	static

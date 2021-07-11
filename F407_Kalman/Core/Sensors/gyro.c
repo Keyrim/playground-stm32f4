@@ -28,7 +28,7 @@ void GYRO_init(gyro_t * gyro, mpu_t * mpu, float * output){
 	gyro->offsets[ORIENTATION_PITCH] = -0.88356f ;
 	gyro->offsets[ORIENTATION_YAW] = 0.0f ;
 
-	//Raise the flag "ok" if the gyro get succesfully initiated
+	//Raise the flag "ok" if the gyro get succesfully initialized
 	switch(MPU_init_gyro(gyro->mpu, MPU_GYRO_2000s, gyro_data_callback)){
 		case SENSOR_REQUEST_OK:
 			EVENT_Set_flag(FLAG_GYRO_OK);

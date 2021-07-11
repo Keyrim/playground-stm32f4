@@ -54,10 +54,9 @@ kalman_state_e KALMAN_Update(kalman_t * kalman){
 	kalman->arm_result = arm_mat_mult_f32(ss->H, &kalman->x_predict, &kalman->inovation);
 	kalman->arm_result = arm_mat_sub_f32(&ss->z, &kalman->inovation, &kalman->inovation);
 
-	//Covariance inovation
+	//Covariance innovation
 	kalman->arm_result = arm_mat_mult_f32(ss->H, kalman->P_predict, &kalman->S_tmp);
 	kalman->arm_result = arm_mat_mult_f32(&kalman->S_tmp, &ss->H_trans, &kalman->S);
-
 	kalman->arm_result = arm_mat_add_f32(&kalman->S, kalman->R, &kalman->S);
 	kalman->arm_result = arm_mat_inverse_f32(&kalman->S, &kalman->S_inversed);
 
@@ -65,11 +64,11 @@ kalman_state_e KALMAN_Update(kalman_t * kalman){
 	kalman->arm_result = arm_mat_mult_f32(kalman->P_predict, &ss->H_trans, &kalman->K);
 	kalman->arm_result = arm_mat_mult_f32(&kalman->K, &kalman->S_inversed, &kalman->K);
 
-	//State estimation
+	//State update
 	kalman->arm_result = arm_mat_mult_f32(&kalman->K, &kalman->inovation, &ss->x);
 	kalman->arm_result = arm_mat_add_f32(&kalman->x_predict, &ss->x, &ss->x);
 
-	//Covariance estimation
+	//Covariance update
 	kalman->arm_result = arm_mat_mult_f32(&kalman->K, kalman->ss->H, &kalman->P);
 	kalman->arm_result = arm_mat_sub_f32(&kalman->I_n, &kalman->P, &kalman->P);
 	kalman->arm_result = arm_mat_mult_f32(&kalman->P, kalman->P_predict, &kalman->P);

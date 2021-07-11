@@ -1,2 +1,2 @@
-Filters.c:9:6:FILTER_init	0	static
+Filters.c:9:6:FILTER_init	8	static
 Filters.c:17:7:FILTER_process	0	static

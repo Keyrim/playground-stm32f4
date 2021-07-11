@@ -12,24 +12,30 @@
 
 typedef enum data_id_e{
 
+	//Complementary filter estimation
 	DATA_ID_ROLL_ANGLE,
 	DATA_ID_PITCH_ANGLE,
 
+	//Mesure angle acc
 	DATA_ID_ROLL_ACC_ANGLE,
 	DATA_ID_PITCH_ACC_ANGLE,
 
+	//Mesures du gyro filtré
 	DATA_ID_ROLL_GYRO,
 	DATA_ID_PITCH_GYRO,
 	DATA_ID_YAW_GYRO,
 
+	//Mesures du gyro brutes
 	DATA_ID_ROLL_GYRO_RAW,
 	DATA_ID_PITCH_GYRO_RAW,
 	DATA_ID_YAW_GYRO_RAW,
 
+	//Mesures accéléromètres
 	DATA_ID_ROLL_ACC,
 	DATA_ID_PITCH_ACC,
 	DATA_ID_YAW_ACC,
 
+	//Mesures accéléromètres brutes
 	DATA_ID_ROLL_ACC_RAW,
 	DATA_ID_PITCH_ACC_RAW,
 	DATA_ID_YAW_ACC_RAW,
@@ -37,6 +43,10 @@ typedef enum data_id_e{
 	//State space vector
 	DATA_ID_STATE_VECTOR_ANGLE_Y,
 	DATA_ID_STATE_VECTOR_GYRO_Y,
+
+	//State space mesurements
+	DATA_ID_MEASUREMENTS_ANGLE_Y,
+	DATA_ID_MEASUREMENTS_GYRO_Y,
 
 	//Kalman's estimation of state space vector
 	DATA_ID_KALMAN_STATE_VECTOR_ANGLE_Y_PREDICT,

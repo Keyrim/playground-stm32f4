@@ -1,1 +1,6 @@
-mask_def.c:26:6:mask_def_events_init	16	static
+mask_def.c:39:13:mask_def_gyro_init_ok	8	static
+mask_def.c:46:13:mask_def_gyro_data_ready	8	static
+mask_def.c:54:13:mask_def_acc_init_ok	8	static
+mask_def.c:61:13:mask_def_acc_data_ready	8	static
+mask_def.c:68:13:mask_def_orientation_update	8	static
+mask_def.c:26:6:mask_def_events_init	8	static

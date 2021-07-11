@@ -8,7 +8,7 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#define GYRO_FREQUENCY 1000
+#define GYRO_FREQUENCY 100
 #define HIGH_LVL_frequency	50
 #define IHM_FREQUENCY 200
 

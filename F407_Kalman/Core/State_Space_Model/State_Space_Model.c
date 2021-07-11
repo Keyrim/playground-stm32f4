@@ -27,8 +27,9 @@ void STATE_SPACE_MODEL_Init(State_Space_Model_t * ss_model, arm_matrix_instance_
 	arm_mat_init_f32(&ss_model->H_trans, H->numCols, H->numRows, ss_model->H_trans_array);
 	arm_mat_trans_f32(H, &ss_model->H_trans);
 
-	//x vector init
+	//x & x_tmp vector init
 	arm_mat_init_f32(&ss_model->x, ss_model->x_size, 1, ss_model->x_array);
+	arm_mat_init_f32(&ss_model->x_tmp, ss_model->x_size, 1, ss_model->x_tmp_array);
 
 	//u vector init
 	arm_mat_init_f32(&ss_model->u, ss_model->u_size, 1, ss_model->u_array);
@@ -45,6 +46,9 @@ void STATE_SPACE_MODEL_Set_x0(State_Space_Model_t * ss_model, float * x_values)
 
 void STATE_SPACE_MODEL_Step(State_Space_Model_t * ss_model)
 {
+	//Predict next state
+	arm_mat_mult_f32(ss_model->B, &ss_model->u, &ss_model->x_tmp);
 	arm_mat_mult_f32(ss_model->F, &ss_model->x, &ss_model->x);
+	arm_mat_add_f32(&ss_model->x_tmp, &ss_model->x, &ss_model->x);
 }
 

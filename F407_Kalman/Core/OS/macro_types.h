@@ -64,7 +64,7 @@
 	#define absolute(x)					(((x) >= 0) ? (x) : (-(x)))
 
 
-	#define assert(condition) if(!(condition)) {printf("assert failed file " __FILE__ " line %d : %s", __LINE__ , #condition ); NVIC_SystemReset();}
+//	#define assert(condition) if(!(condition)) {printf("assert failed file " __FILE__ " line %d : %s", __LINE__ , #condition ); NVIC_SystemReset();}
 
 	#define debug_printf(...)			printf(__VA_ARGS__)
 	#ifdef PRINT_ON_UART_LCD_DISPLAY

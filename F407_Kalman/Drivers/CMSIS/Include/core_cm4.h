@@ -31,8 +31,6 @@
 #ifndef __CORE_CM4_H_GENERIC
 #define __CORE_CM4_H_GENERIC
 
-#define __FPU_PRESENT             1U
-
 #include <stdint.h>
 
 #ifdef __cplusplus

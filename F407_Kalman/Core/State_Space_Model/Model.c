@@ -20,8 +20,8 @@ static arm_matrix_instance_f32 F ;
 static arm_matrix_instance_f32 B ;
 static arm_matrix_instance_f32 H ;
 
-static float F_array[STATE_VECTOR_SIZE*STATE_VECTOR_SIZE] = {1.0f, 0.0009998f, -0.05162f, 0.9997f};
-static float B_array[STATE_VECTOR_SIZE*CONTROL_VECTOR_SIZE] = {0.000008522f , 0.01704};
+static float F_array[STATE_VECTOR_SIZE*STATE_VECTOR_SIZE] = {0.9974f,  0.009975f,  -0.515f, 0.9942f};
+static float B_array[STATE_VECTOR_SIZE*CONTROL_VECTOR_SIZE] = {0.0008511f, 0.17f};
 static float H_array[MEASUREMENT_VECTOR_SIZE*STATE_VECTOR_SIZE] = {1, 0, 0, 1};
 
 static float x0[] = {0, 0};
@@ -32,17 +32,17 @@ static arm_matrix_instance_f32 Q ;
 static arm_matrix_instance_f32 P_predict ;
 
 static float R_array[MEASUREMENT_VECTOR_SIZE*MEASUREMENT_VECTOR_SIZE] = {
-		10, 0,
-		0, 1
+		284, 0,
+		0, 14
 };
 
 static float Q_array[STATE_VECTOR_SIZE*STATE_VECTOR_SIZE] = {
-		0.01, 0,
+		0.001, 0,
 		0, 0.01};
 
 static float P_array[STATE_VECTOR_SIZE*STATE_VECTOR_SIZE] = {
-		5, 0,
-		0, 5};
+		1, 0,
+		0, 1};
 
 
 void MODEL_Init(State_Space_Model_t * ss, kalman_t * kalman)

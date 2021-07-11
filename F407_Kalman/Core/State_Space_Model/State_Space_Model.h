@@ -30,6 +30,9 @@ typedef struct State_Space_Model_t{
 	arm_matrix_instance_f32 H_trans;
 	float H_trans_array[STATE_VECTOR_MAX_SIZE * OUTPUT_MAX_SIZE];
 
+	arm_matrix_instance_f32 x_tmp;
+	float x_tmp_array [STATE_VECTOR_MAX_SIZE];
+
 	arm_matrix_instance_f32 x;
 	float x_array [STATE_VECTOR_MAX_SIZE];
 	arm_matrix_instance_f32 u;

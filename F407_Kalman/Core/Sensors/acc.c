@@ -40,7 +40,6 @@ void ACC_init(acc_t * acc, mpu_t * mpu, float * angle_output){
 		case SENSOR_REQUEST_BUSY:
 			break;
 	}
-
 }
 
 //void ACC_update(acc_t * acc){

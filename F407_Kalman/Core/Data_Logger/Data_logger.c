@@ -71,6 +71,8 @@ static uint8_t name_yaw_gyro_raw[] = "Gyro raw YAW";
 
 static uint8_t name_state_vector_angle_y[] = "State Angle Y";
 static uint8_t name_state_vector_gyro_y[] = "State Gyro Y";
+static uint8_t name_measurement_angle_y[] = "Msrmt Angle y";
+static uint8_t name_measurement_gyro_y[] = "Msrmt Gyro Y";
 static uint8_t name_kalman_predict_angle_y[] = "Predict Angle Y";
 static uint8_t name_kalman_predict_gyro_y[] = "Predict Gyro Y";
 
@@ -98,12 +100,12 @@ void DATA_LOGGER_Init(system_t * sys_){
 	DEFINE_DATA(DATA_ID_PITCH_ANGLE, (uint8_t*)&sys->orientation.angular_position[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle,							USED_AS_OUTPUT);
 
 	//Angles acc
-	DEFINE_DATA(DATA_ID_ROLL_ACC_ANGLE, (uint8_t*)&sys->sensors.acc.angles[ORIENTATION_ROLL], 										DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle_acc,						NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_ACC_ANGLE, (uint8_t*)&sys->sensors.acc.angles[ORIENTATION_PITCH], 									DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle_acc,						USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_ROLL_ACC_ANGLE, (uint8_t*)&sys->sensors.acc.angles[ORIENTATION_ROLL], 											DATA_FORMAT_16B_FLOAT_1D, 	name_roll_angle_acc,						NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_ACC_ANGLE, (uint8_t*)&sys->sensors.acc.angles[ORIENTATION_PITCH], 										DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_angle_acc,						NOT_USED);
 
 	//Angle rate
 	DEFINE_DATA(DATA_ID_ROLL_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_ROLL], 											DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro, 							NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 											DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 							USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_PITCH], 											DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro, 							NOT_USED);
 	DEFINE_DATA(DATA_ID_YAW_GYRO, (uint8_t*)&sys->sensors.gyro.filtered[ORIENTATION_YAW], 												DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro, 			 					NOT_USED);
 
 	//Acceleration
@@ -118,11 +120,16 @@ void DATA_LOGGER_Init(system_t * sys_){
 
 	//Angle Rate raw
 	DEFINE_DATA(DATA_ID_ROLL_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 												DATA_FORMAT_16B_FLOAT_1D, 	name_roll_gyro_raw, 						NOT_USED);
-	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_ROLL], 											DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,						NOT_USED);
+	DEFINE_DATA(DATA_ID_PITCH_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_PITCH], 											DATA_FORMAT_16B_FLOAT_1D, 	name_pitch_gyro_raw,						NOT_USED);
 	DEFINE_DATA(DATA_ID_YAW_GYRO_RAW, (uint8_t*)&sys->sensors.gyro.raw[ORIENTATION_YAW], 												DATA_FORMAT_16B_FLOAT_1D, 	name_yaw_gyro_raw, 							NOT_USED);
 
+	//State space stuff
 	DEFINE_DATA(DATA_ID_STATE_VECTOR_ANGLE_Y, (uint8_t*)&sys->ss.x_array[STATE_VECTOR_ANGLE_Y], 										DATA_FORMAT_16B_FLOAT_1D, 	name_state_vector_angle_y, 					USED_AS_OUTPUT);
 	DEFINE_DATA(DATA_ID_STATE_VECTOR_GYRO_Y, (uint8_t*)&sys->ss.x_array[STATE_VECTOR_ANGLE_RATE_Y], 									DATA_FORMAT_16B_FLOAT_1D, 	name_state_vector_gyro_y, 					USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_MEASUREMENTS_ANGLE_Y, (uint8_t*)&sys->ss.z_array[MEASUREMENT_VECTOR_ANGLE_Y], 									DATA_FORMAT_16B_FLOAT_1D, 	name_measurement_angle_y, 					USED_AS_OUTPUT);
+	DEFINE_DATA(DATA_ID_MEASUREMENTS_GYRO_Y, (uint8_t*)&sys->ss.z_array[MEASUREMENT_VECTOR_GYRO_Y], 									DATA_FORMAT_16B_FLOAT_1D, 	name_measurement_gyro_y, 					USED_AS_OUTPUT);
+
+	//Kalman stuff
 	DEFINE_DATA(DATA_ID_KALMAN_STATE_VECTOR_ANGLE_Y_PREDICT, (uint8_t*)&sys->kalman.x_predict_array[STATE_VECTOR_ANGLE_Y], 				DATA_FORMAT_16B_FLOAT_1D, 	name_kalman_predict_angle_y, 				USED_AS_OUTPUT);
 	DEFINE_DATA(DATA_ID_KALMAN_STATE_VECTOR_ANGLE_RATE_Y_PREDICT, (uint8_t*)&sys->kalman.x_predict_array[STATE_VECTOR_ANGLE_RATE_Y],	DATA_FORMAT_16B_FLOAT_1D, 	name_kalman_predict_gyro_y, 				USED_AS_OUTPUT);
 
@@ -269,7 +276,7 @@ void DATA_LOGGER_Reception(uint8_t * input_buffer){
 					HIGH_LVL_Set_Mode(HIGH_LVL_STATE_FULL_MANUAL);
 					break;
 				case DATA_ID_START_SIMULATION:
-					sys->simulate = TRUE;
+					sys->simulate = 1 - sys->simulate;
 					break;
 			}
 			break;

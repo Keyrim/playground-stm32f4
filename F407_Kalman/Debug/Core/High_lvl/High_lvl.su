@@ -1,3 +1,3 @@
 High_lvl.c:32:6:HIGH_LVL_Init	0	static
 High_lvl.c:38:6:HIGH_LVL_Set_Mode	0	static
-High_lvl.c:42:6:HIGH_LVL_Main	24	static
+High_lvl.c:42:6:HIGH_LVL_Main	8	static

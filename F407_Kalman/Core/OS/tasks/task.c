@@ -106,7 +106,9 @@ void process_high_lvl(uint32_t current_time_us){
 
 
 void process_stuff_made_here(uint32_t current_time_us){
-
+	if(sys->simulate){
+		//STATE_SPACE_MODEL_Step(&sys->ss);
+	}
 }
 
 void process_self_test(uint32_t current_time_us){

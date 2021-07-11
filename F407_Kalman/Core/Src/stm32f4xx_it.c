@@ -23,7 +23,6 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../Telemetry/Telemetry.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -242,10 +241,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-	if(__HAL_UART_GET_FLAG(&huart1, UART_FLAG_IDLE)){
-	  TELEMETRY_Idle_Line_Detection();
-	  __HAL_UART_CLEAR_IDLEFLAG(&huart1);
-	}
+
   /* USER CODE END USART1_IRQn 1 */
 }
 
@@ -278,12 +274,6 @@ void DMA2_Stream7_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
-{
- if(huart == &huart1){
-	 TELEMETRY_TxCpltCallback();
- }
-}
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
